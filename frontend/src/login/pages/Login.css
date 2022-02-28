@@ -50,3 +50,17 @@
   font-size: 1em;
   z-index: 2;
 }
+@media all and (min-width: 480px) {
+  .formHolder {
+    padding: 60px 0;
+  }
+
+  .formHolder form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+.loginBtn {
+  margin-top: 1rem;
+}

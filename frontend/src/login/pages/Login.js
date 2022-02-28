@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-
+import { AuthContext } from "../../shared/context/auth-context";
 import "./Login.css";
 import TextInput from "../../shared/components/FormElements/TextInput";
 
 export default function Login() {
+  const auth = useContext(AuthContext);
   //hooks
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,7 +24,9 @@ export default function Login() {
         password: values.password,
       })
       .then((response) => {
-        console.log(response);
+        if (response) {
+          auth.login(response.data.uid, response.data.token);
+        }
       })
       .catch((error) => {
         setShowError(true);

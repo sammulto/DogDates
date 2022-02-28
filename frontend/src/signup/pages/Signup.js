@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { render } from 'react-dom';
+import React, { useState, useContext } from 'react';
 import { Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -8,11 +7,12 @@ import './Signup.css'
 import TextInput from '../../shared/components/FormElements/TextInput';
 import Select from '../../shared/components/FormElements/Select';
 import ImageUpload from '../../shared/components/FormElements/ImageUpload';
+import { AuthContext } from "../../shared/context/auth-context";
 
 
 const Signup = ( ) => {
 
-  //hooks
+  const auth = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -37,22 +37,23 @@ const Signup = ( ) => {
     formData.append('pictures', values.image);
     
     axios.post(
+      //send post request to backend
       'http://localhost:5000/api/signup', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         }
       ).then((response) => {
-
-      //handle API response
-      //console.log("UserID:");
-      // console.log(httpRes.data.uid);
-      // console.log("Token:");
-      // console.log(httpRes.data.token);
-
+  
       //save token and redirect to user's home page upon signup successfully
+      if (response) {
+        auth.login(response.data.uid, response.data.token);
+        //redirect to account page
+        window.location = "/account";
+      }
 
     }).catch((error) =>{
+      //error handling
       setShowError(true);
       setErrorMessage(error.response.data.error);
     });

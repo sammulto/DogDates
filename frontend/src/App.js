@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 
@@ -27,6 +27,7 @@ function App() {
           }
         />
         <Route path="/account" element={<Account />} />
+        {/* <Route path="/*" element={<Account />} />  Uncomment to redirect to Account Page if route is not exits*/}
       </Routes>
     );
   } else {
@@ -43,6 +44,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/*" element={<Home />} Uncomment to redirect to Home Page if route is not exits/> */}
       </Routes>
     );
   }

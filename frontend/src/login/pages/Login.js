@@ -26,6 +26,8 @@ export default function Login() {
       .then((response) => {
         if (response) {
           auth.login(response.data.uid, response.data.token);
+          //redirect to account page
+          window.location = "/account";
         }
       })
       .catch((error) => {

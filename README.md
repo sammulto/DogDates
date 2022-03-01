@@ -25,10 +25,9 @@ This project will be similar to a dating app but will be for making playdates fo
   * Fill out text fields (drop-down menu of locations)
   * Upload pictures
 * View other users’ profiles
-* Like or dislike a user 
+  * Like or dislike a user 
 * Match with a user (unlock the ability to view extra user information)
 * View users you've matched with
-* Receive a notification when users match with you
 
 ## Languages and Tools
 * Front end: React

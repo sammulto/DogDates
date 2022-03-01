@@ -12,11 +12,15 @@ const DBfailedHttpError = new HttpError(
 );
 
 const createUser = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data.", 422)
+    );
+  }
+
   //get params from request bodygetUserByEmail
-  const { email, password, ownerName, dogName, city, description } =
-    req.body;
-  //TO-DO
-  //input validation
+  const { email, password, ownerName, dogName, city, description } = req.body;
 
   //check if email already exists
   let userExists = true;
@@ -28,7 +32,6 @@ const createUser = async (req, res, next) => {
   }
 
   if (userExists) {
-    console.log("User: " + email + " already exists.");
     return next(
       new HttpError(
         "User name already exists, please choose a new user name.",
@@ -42,7 +45,6 @@ const createUser = async (req, res, next) => {
   try {
     hashedPassword = await bcrypt.hash(password, 10);
   } catch (error) {
-    console.log("Error in HASH password");
     return next(new HttpError("Something went wrong, please try again.", 500));
   }
 
@@ -61,6 +63,11 @@ const createUser = async (req, res, next) => {
   }
 
   //create a user
+  let picturePath = "default";
+  if(req.file){
+    console.log(req.file);
+    picturePath = req.file.path;
+  }
   const newUser = new UserModel({
     uid: newUid,
     email,
@@ -69,7 +76,7 @@ const createUser = async (req, res, next) => {
     dogName,
     city,
     description,
-    pictures: ["test.pic"],
+    pictures: picturePath,
     token: newToken,
   });
 
@@ -83,8 +90,6 @@ const createUser = async (req, res, next) => {
 
   console.log("New User: " + newUser.email + " is created.");
 
-  //TO-DO
-  //Handle image upload
 
   //send response
   const response = newUser.toObject();

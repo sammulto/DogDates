@@ -18,8 +18,6 @@ const userLogin = async (req, res, next) => {
     }
 
     const {email, password} = req.body;
-    
-    //validate input
 
     //check if the user exists
     let existingUser;
@@ -69,9 +67,8 @@ const userLogin = async (req, res, next) => {
     }
 
     //update token in DB
-    existingUser.token = newToken;
     try{
-        await existingUser.save();
+        await UserModel.findByIdAndUpdate(existingUser._id, {"token": newToken});
     }catch(error){
         return next(error);
     }

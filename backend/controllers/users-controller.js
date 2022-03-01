@@ -1,5 +1,6 @@
 const HttpError = require("../models/http-error");
 const { UserModel } = require("../persistence/db-schema");
+const { validationResult } = require("express-validator");
 
 const DBfailedHttpError = new HttpError(
   "Database operation failed, please try again",
@@ -35,6 +36,14 @@ const getUserById = async (req, res, next) => {
 };
 
 const updateUserById = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data.", 422)
+    );
+  }
+
+  const uid = req.params.uid;
   const inputUid = req.params.uid;
   const tokenUid = req.userData.uid;
 

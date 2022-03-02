@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import RegisterButton from "../components/RegisterButton";
+import { AuthContext } from "../../shared/context/auth-context";
 
 import "./Home.css";
 
 export default function Home(props) {
+  const auth = useContext(AuthContext);
   return (
     <div className="home-page">
       <div className="home-page__content">
@@ -19,7 +21,9 @@ export default function Home(props) {
           <img src={props.image} alt={props.name} />
         </div>
         <div>
-        <RegisterButton />
+        {!auth.isLoggedIn && (
+           <RegisterButton />
+        )}
         </div>
       </div>
     </div>

@@ -86,8 +86,8 @@ const Signup = ( ) => {
             city: Yup.string().required('Required'),
             image: Yup.mixed().test(
               "File Size", 
-              "File is too large", 
-              (value) => { return (value&&value.size <= 1048576);}
+              "File is not selected or too large", 
+              (value) => { return (value&&value.size <= 3000000);}
             )
           })}
           onSubmit={signupSubmitHandler} 

@@ -1,11 +1,12 @@
 name: FullStack Branch Backend CI
 
-on:
-  push:
-    branches: [ fullStack ]
-    paths: ['backend/**']
-  pull_request:
-    branches: [ fullStack ]
+on: 
+  [workflow_dispatch]
+#  push:
+#    branches: [ fullStack ]
+#    paths: ['backend/**']
+#  pull_request:
+#    branches: [ fullStack ]
 
 jobs:
   build:

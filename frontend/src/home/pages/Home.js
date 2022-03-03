@@ -14,7 +14,7 @@ export default function Home(props) {
         <div className="home-page__introduction">
           Want to find a play date for your dog?
           <br></br>
-          Dog dates is the best way to find sogs in your area that are looking
+          Dog dates is the best way to find dogs in your area that are looking
           for friends just like you!
         </div>
         <div className="home-page__image">

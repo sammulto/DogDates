@@ -17,7 +17,7 @@ export default function Login() {
     setShowError(false);
     //Call backend API
     axios
-      .post("http://ec2-54-174-64-250.compute-1.amazonaws.com/api/auth/login/", {
+      .post("https://cors-everywhere.herokuapp.com/http://ec2-54-174-64-250.compute-1.amazonaws.com/api/auth/login/", {
         email: values.email,
         password: values.password,
       })

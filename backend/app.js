@@ -24,12 +24,16 @@ const upload = multer({ dest: 'upload/'});
 
 //attach headers to responses
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
     'Access-Control-Allow-Headers',
     'Accept, Authorization, Origin, X-Requested-With, Content-Type'
   );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+  // handle preflight request
+  if (req.method === "OPTIONS") {
+    return res.status(200).send();
+  }
   next();
 });
 
@@ -52,8 +56,9 @@ app.use(authenticator);
 // The following routes are protected  //
 /////////////////////////////////////////
 
-//handle requestslike
 app.use('/api/users', usersRoutes);
+
+//TO-DO to be implement in Sprint 3
 app.use('/api/like', likeRoutes);
 app.use('/api/match', matchRoutes);
 

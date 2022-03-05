@@ -18,7 +18,7 @@ const DeletedAccountWarning = () => {
     axios
       .delete(
         //send patch request to backend
-        `http://localhost:5000/api/users/${userInfo.uid}`,
+        `http://ec2-54-174-64-250.compute-1.amazonaws.com/${userInfo.uid}`,
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,

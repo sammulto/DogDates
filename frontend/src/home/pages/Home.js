@@ -18,7 +18,9 @@ export default function Home(props) {
           for friends just like you!
         </div>
         <div className="home-page__image">
-          <img src={props.image} alt={props.name} />
+          <img 
+            src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_28/1587661/dogs-age-years-kb-inline-200707.jpg"
+            alt="homePageDogsImage" />
         </div>
         <div>
         {!auth.isLoggedIn && (

@@ -17,7 +17,7 @@ const Account = () => {
   };
 
   if (userInfo) {
-    const imagePath = "http://ec2-54-174-64-250.compute-1.amazonaws.com/" + userInfo.pictures;
+    const imagePath = "https://ec2-54-174-64-250.compute-1.amazonaws.com/" + userInfo.pictures;
     return (
       <React.Fragment>
         <a className="user-info-box">

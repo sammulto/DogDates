@@ -47,7 +47,7 @@ const Signup = ( ) => {
   
       //save token and redirect to user's home page upon signup successfully
       if (response) {
-        auth.login(response.data.uid, response.data.token);
+        auth.login(response.data.uid, response.data.token, response.data);
         //redirect to account page
         window.location = "/account";
       }

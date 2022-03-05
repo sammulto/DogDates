@@ -36,7 +36,7 @@ const UpdateAccountInfo = (props) => {
     axios
       .patch(
         //send patch request to backend
-        `https://cors-everywhere.herokuapp.com/http://ec2-54-174-64-250.compute-1.amazonaws.com/${userInfo.uid}`,
+        `https://ec2-54-174-64-250.compute-1.amazonaws.com/${userInfo.uid}`,
         formData,
         {
           headers: {

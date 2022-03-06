@@ -36,7 +36,7 @@ const UpdateAccountInfo = (props) => {
     axios
       .patch(
         //send patch request to backend
-        `https://www.sammul.live/${userInfo.uid}`,
+        `https://www.sammul.live/api/users/${userInfo.uid}`,
         formData,
         {
           headers: {

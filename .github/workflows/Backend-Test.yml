@@ -1,18 +1,17 @@
 name: Backend Testing
 on:
   push:
-    branches: fullStack-1
-    
-env:
-  MONGO_URI: ${{ secrets.MONGO_URI }}  
+    branches: [fullStack-1]
   
 jobs:
   build:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.0.0
         
       - name: Install backend 
         working-directory: ./backend

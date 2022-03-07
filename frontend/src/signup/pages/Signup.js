@@ -10,7 +10,7 @@ import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import { AuthContext } from "../../shared/context/auth-context";
 
 
-const Signup = ( ) => {
+const Signup = (props) => {
 
   const auth = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
@@ -38,7 +38,7 @@ const Signup = ( ) => {
     
     axios.post(
       //send post request to backend
-      'http://localhost:5000/api/signup', formData, {
+      `${props.server}/api/signup`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

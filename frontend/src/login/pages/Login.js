@@ -6,7 +6,7 @@ import { AuthContext } from "../../shared/context/auth-context";
 import "./Login.css";
 import TextInput from "../../shared/components/FormElements/TextInput";
 
-export default function Login() {
+export default function Login(props) {
   const auth = useContext(AuthContext);
   //hooks
   const [showError, setShowError] = useState(false);
@@ -17,7 +17,7 @@ export default function Login() {
     setShowError(false);
     //Call backend API
     axios
-      .post("http://localhost:5000/api/auth/login/", {
+      .post(`${props.server}/api/auth/login/`, {
         email: values.email,
         password: values.password,
       })

@@ -4,7 +4,7 @@ import axios from "axios";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./DeleteAccountWarning.css";
 
-const DeletedAccountWarning = () => {
+const DeletedAccountWarning = (props) => {
   const { userInfo } = useContext(AuthContext);
   const auth = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
@@ -18,7 +18,7 @@ const DeletedAccountWarning = () => {
     axios
       .delete(
         //send patch request to backend
-        `http://localhost:5000/api/users/${userInfo.uid}`,
+        `${props.server}/api/users/${userInfo.uid}`,
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,

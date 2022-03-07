@@ -16,6 +16,7 @@ import { useAuth } from "./shared/hooks/auth-hook";
 
 function App() {
   const { token, login, logout, userId, userInfo } = useAuth();
+  const backendURL = 'https://www.sammul.live';
   let routes;
 
   if (token) {
@@ -23,9 +24,9 @@ function App() {
     routes = (
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/account" element={<Account/>}/>
-        <Route path="/updateAccInfo" element={<UpdateAccInfo/>}/>
-        <Route path="/deleteaccountwarning" element={<DeleteAccountWarning/>}/>
+        <Route path="/account" element={<Account server={backendURL}/>}/>
+        <Route path="/updateAccInfo" element={<UpdateAccInfo server={backendURL}/>}/>
+        <Route path="/deleteaccountwarning" element={<DeleteAccountWarning server={backendURL}/>}/>
         <Route path="/*" element={<Account/>}/>
       </Routes>
     );
@@ -34,8 +35,8 @@ function App() {
     routes = (
       <Routes>
         <Route path="/"element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/> 
+        <Route path="/login" element={<Login server={backendURL}/>}/>
+        <Route path="/signup" element={<Signup server={backendURL}/>}/> 
         <Route path="/profileupdated" element={<InfoUpdated/>}/>
         <Route path="/accountdeleted" element={<AccountDeleted/>}/>
         <Route path="/*" element={<Home/>}/>

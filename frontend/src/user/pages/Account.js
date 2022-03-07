@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./Account.css";
 
-const Account = () => {
+const Account = (props) => {
   const { userInfo } = useContext(AuthContext);
 
   const updateInfoHandler = () => {
@@ -17,7 +17,7 @@ const Account = () => {
   };
 
   if (userInfo) {
-    const imagePath = "http://localhost:5000/" + userInfo.pictures;
+    const imagePath = `${props.server}/${userInfo.pictures}`;
     return (
       <React.Fragment>
         <div className="user-info-box">

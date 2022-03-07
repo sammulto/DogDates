@@ -18,7 +18,8 @@ const authRoutes = require('./routes/auth-routes');
 const signupRoutes = require('./routes/signup-routes');
 const authenticator = require('./middleware/authenticator');
 
-const DB_URL = 'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@cluster0.hxpf1.mongodb.net/dogDatesDB?retryWrites=true&w=majority';
+//const DB_URL = 'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@cluster0.hxpf1.mongodb.net/dogDatesDB?retryWrites=true&w=majority';
+const DB_URL = 'mongodb+srv://backend_db:bi1fUbaMAHZk9WXz@cluster0.hxpf1.mongodb.net/testdb?retryWrites=true&w=majority';
 const app = express();
 const upload = multer({ dest: 'upload/'});
 

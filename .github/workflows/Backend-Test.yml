@@ -1,7 +1,7 @@
 name: Backend Testing
 on:
   push:
-    paths: ['backend/**']
+    branches: fullStack-1
 jobs:
   build:
     runs-on: ubuntu-latest

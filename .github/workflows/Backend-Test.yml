@@ -20,7 +20,7 @@ jobs:
         
       - name: Install backend 
         working-directory: ./backend
-        run: npm install
+        run: npm ci
      
       - name: Backend tests 
         working-directory: ./backend

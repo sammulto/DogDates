@@ -1,0 +1,18 @@
+name: Frontend Testing
+
+on: 
+  [workflow_dispatch]
+  push:
+    paths: ['frontend/**']
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Frontend Testing
+      run: | 
+        cd frontend
+        npm ci
+        npm test

@@ -6,12 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        
+  
     steps:
       - uses: actions/checkout@v2
       
@@ -20,7 +15,7 @@ jobs:
         
       - name: Install backend 
         working-directory: ./backend
-        run: npm ci
+        run: npm install
      
       - name: Backend tests 
         working-directory: ./backend

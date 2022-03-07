@@ -1,14 +1,66 @@
+.formHolder {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+
+}
+
+.form {
+  background-color: white;
+  width: 50em;
+  border-radius: 2em;
+  padding: 1.5em 5em 1.5em 5em;
+  box-shadow: 0 1em 2em #083D77;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  color: #03305f;
+  font-size: 3em;
+  margin-bottom: 0.3em;
+}
+
+.loginBtn {
+  display: block;
+  margin-left: auto;
+  padding: 1em 3em;
+  border: none;
+  background-color: #083D77;
+  color: white;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 3em;
+}
+
+.loginBtn:hover {
+  background-color: #2669f8;
+}
+
+.errorMessage {
+  position: flex;
+  top: -10em;
+  right: 0.2em;
+  padding: 0 0.4em;
+  background-color: white;
+  color: #eb0404;
+  font-weight: 500;
+  font-size: 1em;
+  z-index: 2;
+}
 @media all and (min-width: 480px) {
-  .Login {
+  .formHolder {
     padding: 60px 0;
   }
 
-  .Login form {
+  .formHolder form {
     margin: 0 auto;
     max-width: 320px;
   }
 }
 
-.Login Button {
+.loginBtn {
   margin-top: 1rem;
 }

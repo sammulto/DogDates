@@ -1,13 +1,12 @@
 const HttpError = require("../models/http-error");
 const { UserModel } = require("../persistence/db-schema");
 const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 const DBfailedHttpError = new HttpError(
   "Database operation failed, please try again",
   500
 );
-
-/** TODO: Add validations to all the fields */
 
 const getUserList = async (req, res, next) => {
   //hide the sensitive properties from query results 
@@ -53,21 +52,53 @@ const updateUserById = async (req, res, next) => {
   }
 
   //get params from request body
-  const { email, dogName, city } = req.body;
+  const { ownerName, dogName, city, description, email } = req.body;
   let user = null;
+  let picturePath = "default";
+  if(req.file){
+    console.log(req.file);
+    picturePath = req.file.path;
+  }
 
   //update user info
   const result = await UserModel.find({ uid: inputUid }).exec();
   if (result.length !== 0) user = result[0];
 
   //return error if uid is not valid
-  if (!user) return next(new HttpError("User does not exist!", 404));
-  //user exists, replace the fields in the database
-  //TODO: allow to change part of the fields fields
-  else {
+  if (!user){
+
+    return next(new HttpError("User does not exist!", 404));
+  
+    //user exists, replace the fields in the database
+  }else {
+
+    //if req contains a password, handle password update
+    let hashedPassword = user.password;
+    if(req.body.password){
+      try {
+        hashedPassword = await bcrypt.hash(req.body.password, 10);
+      } catch (error) {
+        return next(new HttpError("Something went wrong, please try again.", 500));
+    }
+
+    //if req contains an image, handle image update
+    let picturePath = user.picturePath;
+    if(req.file.path){
+      picturePath = req.file.path;
+    }
+
+  }
     UserModel.findByIdAndUpdate(
       user._id,
-      { email: email, city: city, dogName: dogName },
+      { 
+        email:email,
+        ownerName: ownerName, 
+        city: city, 
+        dogName: dogName, 
+        description:description, 
+        pictures: picturePath,
+        password: hashedPassword
+      },
       function (error) {
         if (error) return next(DBfailedHttpError);
       }

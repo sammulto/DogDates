@@ -12,8 +12,6 @@ export default function Login() {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  console.log(showError);
-
   //handle login form submit event
   const loginSubmitHandler = async (values) => {
     setShowError(false);
@@ -25,7 +23,7 @@ export default function Login() {
       })
       .then((response) => {
         if (response) {
-          auth.login(response.data.uid, response.data.token);
+          auth.login(response.data.uid, response.data.token, response.data);
           //redirect to account page
           window.location = "/account";
         }

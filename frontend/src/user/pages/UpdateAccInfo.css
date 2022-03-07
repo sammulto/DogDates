@@ -1,13 +1,13 @@
-.formHolder {
+.updateFormHolder {
     display: block;
     justify-content: center;
     align-items: center;
     height: 90vh;
 }
 
-.form {
+.updateForm {
     background-color: white;
-    width: 50em;
+    width: 40vw;
     border-radius: 2em;
     padding: 1.5em 8em 1.5em 8em;
     box-shadow: 0 1em 2em #083D77;
@@ -15,13 +15,13 @@
     margin-right: auto;
 }
 
-.title {
+.updateTitle {
     color: #03305f;
-    font-size: 3em;
+    font-size: 2em;
     margin-bottom: 0.3em;
 }
 
-.signupBtn {
+.updateBtn {
     display: block;
     margin-left: auto;
     padding: 1em 3em;
@@ -34,7 +34,7 @@
     margin-top: 3em;
   }
   
-.signupBtn:hover {
+.updateBtn:hover {
     background-color: #2669f8;
   }
 
@@ -49,3 +49,4 @@
     font-size: 1em;
     z-index: 2;
 }
+

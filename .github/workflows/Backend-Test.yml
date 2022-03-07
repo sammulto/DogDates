@@ -2,6 +2,10 @@ name: Backend Testing
 on:
   push:
     branches: fullStack-1
+    
+env:
+  MONGO_URI: ${{ secrets.MONGO_URI }}  
+  
 jobs:
   build:
     runs-on: ubuntu-latest

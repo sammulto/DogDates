@@ -13,7 +13,7 @@ return (
             <div className="goodbye-image">
                 <img 
                     src={imageURL}
-                    alt="goodbye image" />
+                    alt="goodbye" />
             </div>
             <div className="goodbye-message">
                 We're sorry to see you go.

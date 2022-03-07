@@ -1,8 +1,8 @@
-name: Frontend Testing
+name: Manual Backend Testing
 
 on: 
-  push:
-    paths: ['frontend/**']
+  [workflow_dispatch]
+    paths: ['backend/**']
 
 jobs:
   build:
@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Frontend Testing
+    - name: Backend Testing
       run: | 
-        cd frontend
+        cd backend
         npm ci
         npm test

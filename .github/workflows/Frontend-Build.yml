@@ -1,7 +1,6 @@
 name: Frontend Build
 
 on: 
-  [workflow_dispatch]
   push:
     paths: ['frontend/**']
 

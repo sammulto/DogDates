@@ -1,7 +1,7 @@
-name: Frontend Testing
+name: Manual Frontend Testing
 
 on: 
-  push:
+  [workflow_dispatch]
     paths: ['frontend/**']
 
 jobs:

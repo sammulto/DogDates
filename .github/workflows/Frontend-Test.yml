@@ -2,6 +2,8 @@ name: Frontend Testing
 on:
   push:
     paths: ['frontend/**']
+  pull_request:
+  
 jobs:
   build:
     runs-on: ubuntu-latest

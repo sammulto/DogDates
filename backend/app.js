@@ -1,5 +1,4 @@
 //This is the entry point of the backend
-
 require('dotenv').config();
 
 const fs = require('fs');
@@ -18,7 +17,11 @@ const authRoutes = require('./routes/auth-routes');
 const signupRoutes = require('./routes/signup-routes');
 const authenticator = require('./middleware/authenticator');
 
-const DB_URL = 'mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@cluster0.hxpf1.mongodb.net/dogDatesDB?retryWrites=true&w=majority';
+const DB_URL = 'mongodb+srv://' + 
+  process.env.DB_USER + ':' + 
+  process.env.DB_PASSWORD + '@cluster0.hxpf1.mongodb.net/' + 
+  process.env.DB_NAME + '?retryWrites=true&w=majority';
+
 const app = express();
 const upload = multer({ dest: 'upload/'});
 
@@ -92,12 +95,12 @@ mongoose
   .connect(DB_URL)
   .then(() => {
     console.log('Server is running...');
-    app.listen(5000);    
+    app.listen(process.env.SERVER_PORT);    
   })
   .catch( error => {
     console.log('Failed to connect to MongoDB');
     console.log(error);
   });
 
-
+module.exports = app;
 

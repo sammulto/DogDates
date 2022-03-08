@@ -19,6 +19,7 @@ function App() {
   const API_URL = "https://www.sammul.live";
   //////////////////////////////////////////////////////////////////
   const { token, login, logout, userId, userInfo } = useAuth();
+  const backendURL = 'https://www.sammul.live';
   let routes;
 
   if (token) {

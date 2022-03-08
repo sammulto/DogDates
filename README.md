@@ -1,5 +1,7 @@
 # Dog Dates
-A dating-app style web application to find play dates for your dog
+A dating-app style web application to find play dates for your dog   
+
+[Dog Dates Live Demo](https://4350.sammul.live)
 
 --------------
 

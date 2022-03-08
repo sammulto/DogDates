@@ -382,7 +382,7 @@ describe('Test update user profile', () => {
             dogName: "Sun",
             city: "Winnipeg",
         }).expect(201).then((res) => {
-            //expect(res.body.user.dogName).toEqual("Sun");
+            expect(res.body.user.dogName).toEqual("Sun");
         })
     })
 
@@ -395,7 +395,7 @@ describe('Test update user profile', () => {
             description: "Hello, I'm Franklin and my dog is Sun.",
             pictures: ["9uf234hf41.jpg"],
         }).expect(201).then((res) => {
-            //expect(res.body.user.description).toEqual("Hello, I'm Franklin and my dog is Sun.");
+            expect(res.body.user.description).toEqual("Hello, I'm Franklin and my dog is Sun.");
         })
     })
 
@@ -419,9 +419,9 @@ describe('Test update user profile', () => {
             description: "Hello, I'm Christina and my dog is Sad.",
             pictures: ["9uf234hf44.jpg"],
         }).expect(201).then((res) => {
-            //expect(res.body.user.dogName).toEqual("Sad");
-            //expect(res.body.user.city).toEqual("Toronto");
-            //expect(res.body.user.description).toEqual("Hello, I'm Christina and my dog is Sad.");
+            expect(res.body.user.dogName).toEqual("Sad");
+            expect(res.body.user.city).toEqual("Toronto");
+            expect(res.body.user.description).toEqual("Hello, I'm Christina and my dog is Sad.");
         })
     })
 });

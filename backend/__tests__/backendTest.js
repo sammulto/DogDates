@@ -196,6 +196,27 @@ describe('Test User Login', () => {
         }).expect(400);
     })
 
+    test('Wrong email format - no domain', async () => {
+        return request(app).post('/api/auth/login').send({
+            email: "abcd",
+            password: "123456",
+        }).expect(400);
+    })
+
+    test('Wrong email format - no @', async () => {
+        return request(app).post('/api/auth/login').send({
+            email: "abcdabc.com",
+            password: "123456",
+        }).expect(400);
+    })
+
+    test('Wrong email format - no prefix', async () => {
+        return request(app).post('/api/auth/login').send({
+            email: "@abc.com",
+            password: "123456",
+        }).expect(400);
+    })
+
     test('User1:Vaild email and password', async () => {
         return request(app).post('/api/auth/login').send({
             email: "abcd@a.com",

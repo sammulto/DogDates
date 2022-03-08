@@ -9,11 +9,11 @@ const AccountDelected = () => {
 return (
     <React.Fragment>
         <div className="goodbye-content">
-            <h1 className="goodbye-title">Hople To See You Again</h1>
+            <h1 className="goodbye-title">Hope To See You Again</h1>
             <div className="goodbye-image">
                 <img 
                     src={imageURL}
-                    alt="goodbye image" />
+                    alt="goodbye" />
             </div>
             <div className="goodbye-message">
                 We're sorry to see you go.

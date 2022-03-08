@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -36,7 +36,7 @@ const UpdateAccountInfo = (props) => {
     axios
       .patch(
         //send patch request to backend
-        `https://www.sammul.live/api/users/${userInfo.uid}`,
+        `${props.API_URL}/api/users/${userInfo.uid}`,
         formData,
         {
           headers: {

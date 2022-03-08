@@ -1,5 +1,6 @@
 name: Frontend Testing
 on:
+  pull_request:
   push:
     paths: ['frontend/**']
 jobs:

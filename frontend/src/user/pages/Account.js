@@ -20,12 +20,12 @@ const Account = () => {
     const imagePath = "https://www.sammul.live/" + userInfo.pictures;
     return (
       <React.Fragment>
-        <a className="user-info-box">
+        <div className="user-info-box">
           <div className="user-info-content">
             <h2 className="user-info-title">
               Welcome Back, {userInfo.ownerName}
             </h2>
-            <img className="user-info-image" src={imagePath} alt="User Image" />
+            <img className="user-info-image" src={imagePath} alt="User Profile" />
             <div className="user-info-line">
               <span className="material-icons user-info-icon name">person</span>
               <div className="user-info-value">{userInfo.ownerName}</div>
@@ -59,7 +59,7 @@ const Account = () => {
               />
             </div>
           </div>
-        </a>
+        </div>
       </React.Fragment>
     );
   } else {

@@ -41,7 +41,7 @@ const DeletedAccountWarning = () => {
 
   return (
     <React.Fragment>
-      <a className="warning-box">
+      <div className="warning-box">
         <div className="warning-content">
           <div>
             <h2 className="warning-title">You're Deleting Your Account!</h2>
@@ -72,7 +72,7 @@ const DeletedAccountWarning = () => {
             />
           </div>
         </div>
-      </a>
+      </div>
     </React.Fragment>
   );
 };

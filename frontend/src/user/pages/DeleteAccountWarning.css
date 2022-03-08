@@ -1,9 +1,8 @@
 .warning-box {
-    display: flex;
+    display: block;
     justify-content: center;
     align-content: center;
     align-items: center;
-    height: 50vh;
     background-color: white;
     width: 50vw;
     border-radius: 2em;
@@ -35,7 +34,6 @@
     justify-content: center;
     color: #bb0000;
     font-size: 12em;
-    padding-right: 0.25em;
 }
 
 .warning-message{
@@ -54,7 +52,7 @@
 .goback-btn {
     display: inline-block;
     justify-content: center;
-    padding: 1em 3em;
+    padding: 1em 1em;
     border: none;
     background-color: #083D77;
     color: white;
@@ -63,6 +61,7 @@
     font-size: 1em;
     margin-top: 2.5em;
     margin-right: 3em;
+    margin-left: 3em;
 }
   
 .goback-btn:hover {
@@ -81,6 +80,7 @@
     font-size: 1em;
     margin-top: 2.5em;
     margin-left: 3em;
+    margin-right: 3em;
 }
   
 .delete-comfirm-btn {

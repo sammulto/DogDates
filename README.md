@@ -16,7 +16,7 @@ A dating-app style web application to find play dates for your dog
 
 ## Description
 This project will be similar to a dating app but will be for making playdates for dogs. Our target users will be dog owners who want to find playdates for their dogs. A user will be able to create an account, add information and pictures and then view other users' accounts and either ‘like’ or ‘dislike’ them. When two users like each other they have ‘matched’ and they are given new permissions such as the ability to see more information about each other, such as contact information, or possibly a chat feature to communicate with one another.
-* Project proposal can be found [here](https://github.com/Aiphox/DogDates/wiki#project-summary-and-vision).
+* Project proposal can be found [here](https://github.com/Aiphox/DogDates/wiki/Project-Proposal#project-proposal).
 
 ## Core Features
 * Create account
@@ -25,10 +25,9 @@ This project will be similar to a dating app but will be for making playdates fo
   * Fill out text fields (drop-down menu of locations)
   * Upload pictures
 * View other users’ profiles
-* Like or dislike a user 
+  * Like or dislike a user 
 * Match with a user (unlock the ability to view extra user information)
 * View users you've matched with
-* Receive a notification when users match with you
 
 ## Languages and Tools
 * Front end: React
@@ -36,7 +35,11 @@ This project will be similar to a dating app but will be for making playdates fo
 * Database: MongoDB
 
 ## Architecture Design
+### System Architecture
 ![System architecture block diagram](https://github.com/Aiphox/DogDates/blob/main/System%20Architecture.PNG)
+
+### Backend Class Architecture Diagram
+![System architecture block diagram](https://github.com/Aiphox/DogDates/blob/main/Class%20Diagram%20New.PNG)
 
 ## Meeting Minutes
 * Meeting minutes can be found [here](https://github.com/Aiphox/DogDates/wiki/Meetings-Tracking#meeting-minutes).

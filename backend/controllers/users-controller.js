@@ -104,6 +104,14 @@ const updateUserById = async (req, res, next) => {
       }
     );
 
+    //update user's content
+    user.email = email;
+    user.ownerName = ownerName;
+    user.city = city;
+    user.dogName = dogName;
+    user.description = description;
+    user.pictures = [picturePath];
+
     //send response
     res.status(201).json({ msg: "user updated.", user });
   }

@@ -9,22 +9,18 @@ import Select from '../../shared/components/FormElements/Select';
 import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import { AuthContext } from "../../shared/context/auth-context";
 
-
 const Signup = (props) => {
 
   const auth = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
-  console.log(showError);
-
   //handle signup form submit event
   const signupSubmitHandler = async (values) => {
     //console.log(JSON.stringify(values, null, 6));
 
-    setShowError(false);
+    console.log("api url: " + props.API_URL);
     
-
     //Call backend API
     const FormData = require('form-data');
     const formData = new FormData();
@@ -38,7 +34,7 @@ const Signup = (props) => {
     
     axios.post(
       //send post request to backend
-      `${props.server}/api/signup`, formData, {
+      `${props.API_URL}/api/signup`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

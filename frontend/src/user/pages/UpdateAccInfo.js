@@ -36,7 +36,7 @@ const UpdateAccountInfo = (props) => {
     axios
       .patch(
         //send patch request to backend
-        `${props.server}/${userInfo.uid}`,
+        `${props.API_URL}/api/users/${userInfo.uid}`,
         formData,
         {
           headers: {

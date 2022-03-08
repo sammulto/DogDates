@@ -17,7 +17,7 @@ const Account = (props) => {
   };
 
   if (userInfo) {
-    const imagePath = `${props.server}/${userInfo.pictures}`;
+    const imagePath = props.API_URL+ "/" + userInfo.pictures;
     return (
       <React.Fragment>
         <div className="user-info-box">

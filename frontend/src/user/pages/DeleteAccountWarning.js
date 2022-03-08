@@ -18,7 +18,7 @@ const DeletedAccountWarning = (props) => {
     axios
       .delete(
         //send patch request to backend
-        `${props.server}/api/users/${userInfo.uid}`,
+        `${props.API_URL}/api/users/${userInfo.uid}`,
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,

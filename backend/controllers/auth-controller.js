@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const bcrypt = require('bcryptjs');
 const webtoken = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
@@ -59,7 +61,7 @@ const userLogin = async (req, res, next) => {
     try {
         newToken = webtoken.sign(
             {uid: existingUser.uid, email: existingUser.email}, 
-            'thisSecretIsNotASecret', {expiresIn: '4h'}
+            process.env.TOKEN_SCERT, {expiresIn: '4h'}
         );
     }catch(error){
         console.log('Error in TOKEN generation');

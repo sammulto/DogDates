@@ -17,7 +17,7 @@ export default function Login() {
     setShowError(false);
     //Call backend API
     axios
-      .post("http://localhost:5000/api/auth/login/", {
+      .post("https://www.sammul.live/api/auth/login/", {
         email: values.email,
         password: values.password,
       })

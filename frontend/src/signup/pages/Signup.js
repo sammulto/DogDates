@@ -38,7 +38,7 @@ const Signup = ( ) => {
     
     axios.post(
       //send post request to backend
-      'http://localhost:5000/api/signup', formData, {
+      'https://www.sammul.live/api/signup', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }

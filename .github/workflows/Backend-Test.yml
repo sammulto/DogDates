@@ -1,14 +1,19 @@
 name: Backend Testing
 on:
   push:
-    paths: ['backend/**']
+    branches: [fullStack-1]
+  
 jobs:
-  backend:
+  build:
     runs-on: ubuntu-latest
+  
     steps:
       - uses: actions/checkout@v2
-      - name: Test Backend
-        run: |
-          cd backend
-          npm ci
-          npm test
+        
+      - name: Install backend 
+        working-directory: ./backend
+        run: npm install
+     
+      - name: Backend tests 
+        working-directory: ./backend
+        run: npm test

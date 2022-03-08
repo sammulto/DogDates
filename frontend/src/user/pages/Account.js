@@ -17,7 +17,7 @@ const Account = () => {
   };
 
   if (userInfo) {
-    const imagePath = "http://localhost:5000/" + userInfo.pictures;
+    const imagePath = "https://www.sammul.live/" + userInfo.pictures;
     return (
       <React.Fragment>
         <div className="user-info-box">

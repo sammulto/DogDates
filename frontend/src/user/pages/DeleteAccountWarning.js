@@ -18,7 +18,7 @@ const DeletedAccountWarning = () => {
     axios
       .delete(
         //send patch request to backend
-        `http://localhost:5000/api/users/${userInfo.uid}`,
+        `https://www.sammul.live/api/users/${userInfo.uid}`,
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,

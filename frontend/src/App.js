@@ -15,6 +15,9 @@ import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
 
 function App() {
+  //////////////////// Change here for API SERVER URL ///////////////
+  const API_URL = "http://localhost:5000";
+  //////////////////////////////////////////////////////////////////
   const { token, login, logout, userId, userInfo } = useAuth();
   let routes;
 
@@ -23,10 +26,10 @@ function App() {
     routes = (
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/account" element={<Account/>}/>
-        <Route path="/updateAccInfo" element={<UpdateAccInfo/>}/>
-        <Route path="/deleteaccountwarning" element={<DeleteAccountWarning/>}/>
-        <Route path="/*" element={<Account/>}/>
+        <Route path="/account" element={<Account API_URL={API_URL}/>}/>
+        <Route path="/updateAccInfo" element={<UpdateAccInfo API_URL={API_URL}/>}/>
+        <Route path="/deleteaccountwarning" element={<DeleteAccountWarning API_URL={API_URL}/>}/>
+        <Route path="/*" element={<Account API_URL={API_URL}/>}/>
       </Routes>
     );
   } else {
@@ -34,8 +37,8 @@ function App() {
     routes = (
       <Routes>
         <Route path="/"element={<Home/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/> 
+        <Route path="/login" element={<Login API_URL={API_URL}/>}/>
+        <Route path="/signup" element={<Signup API_URL={API_URL}/>}/> 
         <Route path="/profileupdated" element={<InfoUpdated/>}/>
         <Route path="/accountdeleted" element={<AccountDeleted/>}/>
         <Route path="/*" element={<Home/>}/>

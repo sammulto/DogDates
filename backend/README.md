@@ -5,12 +5,10 @@
 
 # API Documentation and mock API
 This is the blueprint of the API for sprint 2.
-[API Documentation and Mock API](https://app.swaggerhub.com/apis/sammulto/DogDates/1.0.0#/)
+[API Documentation and Mock API](https://app.swaggerhub.com/apis/sammulto/DogDates/1.2.0#/)
 
 # About protected API endpoints
-Call to protected API endpoints required a token attached to the request header.   
-The request header should include:   
-* Authorization: <token>   
+Protected endpoints use Bearer Token for authorization.
 
 
 # Current Supported API Calls
@@ -63,7 +61,7 @@ Delete user's info by id.
 ### `GET /api/like/:id` 
 Get the list of the user's liked users
 
-### `PATCH /api/users/:id`
+### `PATCH /api/like/:id`
 update the user's list
 Parameters:
 * Liked User's id

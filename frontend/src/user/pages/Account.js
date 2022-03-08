@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./Account.css";
 
-const Account = () => {
+const Account = (props) => {
   const { userInfo } = useContext(AuthContext);
 
   const updateInfoHandler = () => {
@@ -17,15 +17,15 @@ const Account = () => {
   };
 
   if (userInfo) {
-    const imagePath = "https://www.sammul.live/" + userInfo.pictures;
+    const imagePath = props.API_URL+ "/" + userInfo.pictures;
     return (
       <React.Fragment>
-        <a className="user-info-box">
+        <div className="user-info-box">
           <div className="user-info-content">
             <h2 className="user-info-title">
               Welcome Back, {userInfo.ownerName}
             </h2>
-            <img className="user-info-image" src={imagePath} alt="User Image" />
+            <img className="user-info-image" src={imagePath} alt="User Profile" />
             <div className="user-info-line">
               <span className="material-icons user-info-icon name">person</span>
               <div className="user-info-value">{userInfo.ownerName}</div>
@@ -59,7 +59,7 @@ const Account = () => {
               />
             </div>
           </div>
-        </a>
+        </div>
       </React.Fragment>
     );
   } else {

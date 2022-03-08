@@ -2,11 +2,13 @@ import React, { useState, useContext } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+
 import { AuthContext } from "../../shared/context/auth-context";
 import "./Login.css";
 import TextInput from "../../shared/components/FormElements/TextInput";
 
-export default function Login() {
+
+export default function Login(props) {
   const auth = useContext(AuthContext);
   //hooks
   const [showError, setShowError] = useState(false);
@@ -17,7 +19,7 @@ export default function Login() {
     setShowError(false);
     //Call backend API
     axios
-      .post("https://www.sammul.live/api/auth/login/", {
+      .post(`${props.API_URL}/api/auth/login/`, {
         email: values.email,
         password: values.password,
       })

@@ -4,7 +4,7 @@ import axios from "axios";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./DeleteAccountWarning.css";
 
-const DeletedAccountWarning = () => {
+const DeletedAccountWarning = (props) => {
   const { userInfo } = useContext(AuthContext);
   const auth = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
@@ -18,7 +18,7 @@ const DeletedAccountWarning = () => {
     axios
       .delete(
         //send patch request to backend
-        `https://www.sammul.live/api/users/${userInfo.uid}`,
+        `${props.API_URL}/api/users/${userInfo.uid}`,
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,
@@ -41,7 +41,7 @@ const DeletedAccountWarning = () => {
 
   return (
     <React.Fragment>
-      <a className="warning-box">
+      <div className="warning-box">
         <div className="warning-content">
           <div>
             <h2 className="warning-title">You're Deleting Your Account!</h2>
@@ -72,7 +72,7 @@ const DeletedAccountWarning = () => {
             />
           </div>
         </div>
-      </a>
+      </div>
     </React.Fragment>
   );
 };

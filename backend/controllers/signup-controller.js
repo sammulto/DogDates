@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const bcrypt = require("bcryptjs");
 const webtoken = require("jsonwebtoken");
 const { validationResult } = require("express-validator");
@@ -54,7 +56,7 @@ const createUser = async (req, res, next) => {
   try {
     newToken = webtoken.sign(
       { uid: newUid, email: email },
-      "thisSecretIsNotASecret",
+      process.env.TOKEN_SCERT,
       { expiresIn: "12h" }
     );
   } catch (error) {

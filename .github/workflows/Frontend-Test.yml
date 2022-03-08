@@ -1,5 +1,6 @@
 name: Frontend Testing
 on:
+  pull_request:
   push:
     paths: ['frontend/**']
 jobs:
@@ -12,12 +13,12 @@ jobs:
           cd frontend
           npm ci
           npm run build
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Test frontend
-        run: |
-          cd frontend
-          npm ci
-          npm test
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Test frontend
+  #       run: |
+  #         cd frontend
+  #         npm ci
+  #         npm test

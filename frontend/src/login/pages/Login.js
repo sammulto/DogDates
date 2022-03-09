@@ -60,16 +60,16 @@ export default function Login(props) {
             //login form
             <Form className="form">
               <h1 className="title">Log in</h1>
-              <TextInput name="email" label="Email" type="text" />
-              <TextInput name="password" label="Password" type="password" />
+              <TextInput name="email" label="Email" type="text" data-testid="email"/>
+              <TextInput name="password" label="Password" type="password" data-testid="password" />
               <div
-                className="errorMessage"
+                className="errorMessage" data-testid="errorMsg"
                 style={showError ? { display: "block" } : { display: "none" }}
               >
                 {" "}
                 {errorMessage}{" "}
               </div>
-              <input type="submit" className="loginBtn" value="Login" />
+              <input type="submit" className="loginBtn" value="Login" data-testid="button"/>
             </Form>
           )}
         </Formik>

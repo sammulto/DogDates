@@ -99,18 +99,18 @@ const UpdateAccountInfo = (props) => {
             //profile update form
             <Form className="updateForm">
               <h1 className="updateTitle">Update Account Profile</h1>
-              <TextInput name="email" label="Email" type="text" />
-              <TextInput name="password" label="Password" type="password" />
-              <TextInput name="ownerName" label="My Name" type="text" />
-              <TextInput name="dogName" label="My Puppy's Name" type="text" />
-              <Select name="city" label="City">
-                <option id="1" value="">
+              <TextInput name="email" label="Email" type="text" data-testid="email"/>
+              <TextInput name="password" label="Password" type="password" data-testid="password"/>
+              <TextInput name="ownerName" label="My Name" type="text" data-testid="ownerName"/>
+              <TextInput name="dogName" label="My Puppy's Name" type="text" data-testid="dogName"/>
+              <Select name="city" label="City" data-testid="city">
+                <option id="1" value="" data-testid="select_city">
                   Select A City
                 </option>
-                <option id="2" value="Winnipeg">
+                <option id="2" value="Winnipeg" data-testid="winnipeg">
                   Winnipeg
                 </option>
-                <option id="3" value="Toronto">
+                <option id="3" value="Toronto" data-testid="toronto">
                   Toronto
                 </option>
               </Select>
@@ -118,6 +118,7 @@ const UpdateAccountInfo = (props) => {
                 name="description"
                 label="About Me And My Puppy"
                 type="text"
+                data-testid="description"
               />
               <ImageUpload
                 name="image"
@@ -132,7 +133,7 @@ const UpdateAccountInfo = (props) => {
                 <div className="errorMessage">{errors.image}</div>
               ) : null}
               <div
-                className="errorMessage"
+                className="errorMessage" data-testid="errorMsg"
                 style={showError ? { display: "block" } : { display: "none" }}
               >
                 {" "}
@@ -142,6 +143,7 @@ const UpdateAccountInfo = (props) => {
                 type="submit"
                 className="updateBtn"
                 value="Update Profile"
+                data-testid="button"
               />
             </Form>
           )}

@@ -11,18 +11,18 @@ export default function Home(props) {
     <div className="home-page">
       <div className="home-page__content">
         <h1>Dog Dates </h1>
-        <div className="home-page__introduction">
+        <div className="home-page__introduction" data-testid= "body">
           Want to find a play date for your dog?
           <br></br>
           Dog dates is the best way to find dogs in your area that are looking
           for friends just like you!
         </div>
-        <div className="home-page__image">
+        <div className="home-page__image" data-testid= "photo">
           <img 
             src="https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_28/1587661/dogs-age-years-kb-inline-200707.jpg"
             alt="homePageDogsImage" />
         </div>
-        <div>
+        <div data-testid= "button">
         {!auth.isLoggedIn && (
            <RegisterButton />
         )}

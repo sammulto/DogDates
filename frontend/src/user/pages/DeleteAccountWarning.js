@@ -52,7 +52,7 @@ const DeletedAccountWarning = (props) => {
             </h2>
           </div>
           <div
-            className="warning-errorMessage"
+            className="warning-errorMessage" data-testid="errorMessage"
             style={showError ? { display: "block" } : { display: "none" }}
           >
             {errorMessage}
@@ -63,12 +63,14 @@ const DeletedAccountWarning = (props) => {
               className="goback-btn"
               value="Go Back"
               onClick={backToProfileHandler}
+              data-testid="goBack"
             />
             <input
               type="submit"
               className="delete-comfirm-btn"
               value="Delete My Account"
               onClick={deleteAccountHandler}
+              data-testid="deleteAccount"
             />
           </div>
         </div>

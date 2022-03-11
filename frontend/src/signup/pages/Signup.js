@@ -58,7 +58,7 @@ const Signup = (props) => {
 
   return (
     <React.Fragment>
-      <div className="formHolder">
+      <div className="signup-formHolder">
         <Formik
         //form data schema
           initialValues={{
@@ -90,8 +90,8 @@ const Signup = (props) => {
         >
           {({ errors, touched, setFieldValue }) => (
             //sign up form
-            <Form className="form">
-              <h1 className="title" data-testid="header">Sign up</h1>
+            <Form className="signup-form">
+              <h1 className="signup-title" data-testid="header">Sign up</h1>
               <TextInput name="email" label="Email" type="text" data-testid="email"/>
               <TextInput name="password" label="Password" type="password" data-testid="password"/>
               <TextInput name="ownerName" label="My Name" type="text" data-testid="ownerName"/>
@@ -111,8 +111,8 @@ const Signup = (props) => {
                 }
                 errorText=" "
               />
-              {touched.image && errors.image ? (<div className="errorMessage">{errors.image}</div>) : null}
-              <div className="errorMessage" data-testid="errorMsg" style={showError ? {display:"block"} : {display:"none"}}> {errorMessage} </div>
+              {touched.image && errors.image ? (<div className="signup-errorMessage">{errors.image}</div>) : null}
+              <div className="signup-errorMessage" data-testid="errorMsg" style={showError ? {display:"block"} : {display:"none"}}> {errorMessage} </div>
               <input type="submit" className="signupBtn" value="Sign up" data-testid="button"/>
             </Form>
           )}

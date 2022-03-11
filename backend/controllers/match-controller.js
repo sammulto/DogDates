@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpError = require('../models/http-error');
 const fakeMatchList = require('../testingDatabase/fake-match.json');
 

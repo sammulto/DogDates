@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 
 const controller = require('../controllers/like-controller');

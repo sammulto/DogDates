@@ -2,14 +2,14 @@
     display: block;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 80vh;
 }
 
 .updateForm {
     background-color: white;
     width: 40vw;
     border-radius: 2em;
-    padding: 1.5em 8em 1.5em 8em;
+    padding: 1em 5em 1.5em 5em;
     box-shadow: 0 1em 2em #083D77;
     margin-left: auto;
     margin-right: auto;

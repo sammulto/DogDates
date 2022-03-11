@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpError = require("../models/http-error");
 const { UserModel } = require("../persistence/db-schema");
 const { validationResult } = require("express-validator");

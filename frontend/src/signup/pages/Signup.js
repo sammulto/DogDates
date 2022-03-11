@@ -58,7 +58,7 @@ const Signup = (props) => {
 
   return (
     <React.Fragment>
-      <div className="formHolder">
+      <div className="signup-formHolder">
         <Formik
         //form data schema
           initialValues={{
@@ -90,18 +90,18 @@ const Signup = (props) => {
         >
           {({ errors, touched, setFieldValue }) => (
             //sign up form
-            <Form className="form">
-              <h1 className="title">Sign up</h1>
-              <TextInput name="email" label="Email" type="text"/>
-              <TextInput name="password" label="Password" type="password"/>
-              <TextInput name="ownerName" label="My Name" type="text"/>
-              <TextInput name="dogName" label="My Puppy's Name" type="text"/>
-              <Select name="city" label="City">
-                <option value="">Select A City</option>
-                <option value="Winnipeg">Winnipeg</option>
-                <option value="Toronto">Toronto</option>
+            <Form className="signup-form">
+              <h1 className="signup-title" data-testid="header">Sign up</h1>
+              <TextInput name="email" label="Email" type="text" data-testid="email"/>
+              <TextInput name="password" label="Password" type="password" data-testid="password"/>
+              <TextInput name="ownerName" label="My Name" type="text" data-testid="ownerName"/>
+              <TextInput name="dogName" label="My Puppy's Name" type="text" data-testid="dogName"/>
+              <Select name="city" label="City" data-testid="city">
+                <option value="" data-testid="select_city">Select A City</option>
+                <option value="Winnipeg" data-testid="winnipeg">Winnipeg</option>
+                <option value="Toronto" data-testid="toronto">Toronto</option>
               </Select>
-              <TextInput name="description" label="About Me And My Puppy" type="text"/>
+              <TextInput name="description" label="About Me And My Puppy" type="text" data-testid="description"/>
               <ImageUpload 
                 name="image"
                 id="image" 
@@ -111,9 +111,9 @@ const Signup = (props) => {
                 }
                 errorText=" "
               />
-              {touched.image && errors.image ? (<div className="errorMessage">{errors.image}</div>) : null}
-              <div className="errorMessage" style={showError ? {display:"block"} : {display:"none"}}> {errorMessage} </div>
-              <input type="submit" className="signupBtn" value="Sign up"/>
+              {touched.image && errors.image ? (<div className="signup-errorMessage">{errors.image}</div>) : null}
+              <div className="signup-errorMessage" data-testid="errorMsg" style={showError ? {display:"block"} : {display:"none"}}> {errorMessage} </div>
+              <input type="submit" className="signupBtn" value="Sign up" data-testid="button"/>
             </Form>
           )}
         </Formik>

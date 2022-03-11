@@ -1,12 +1,10 @@
-//This is the entry point of the backend
-require('dotenv').config();
+//main app for the backend
+'use strict';
 
 const fs = require('fs');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const multer = require('multer');
 const path = require('path');
 
 const HttpError = require('./models/http-error');
@@ -17,13 +15,7 @@ const authRoutes = require('./routes/auth-routes');
 const signupRoutes = require('./routes/signup-routes');
 const authenticator = require('./middleware/authenticator');
 
-const DB_URL = 'mongodb+srv://' + 
-  process.env.DB_USER + ':' + 
-  process.env.DB_PASSWORD + '@cluster0.hxpf1.mongodb.net/' + 
-  process.env.DB_NAME + '?retryWrites=true&w=majority';
-
 const app = express();
-const upload = multer({ dest: 'upload/'});
 
 //attach headers to responses
 app.use((req, res, next) => {
@@ -44,7 +36,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 //parse multipart/form-data
-//app.use(upload.array()); 
 app.use('/upload/pictures', express.static(path.join('upload', 'pictures')));
 
 //handle user signup and authentication
@@ -90,17 +81,5 @@ app.use((err, req, res, next) => {
   });
 
   
-//start server only if DB connect successfully
-mongoose
-  .connect(DB_URL)
-  .then(() => {
-    console.log('Server is running...');
-    app.listen(process.env.SERVER_PORT);    
-  })
-  .catch( error => {
-    console.log('Failed to connect to MongoDB');
-    console.log(error);
-  });
-
 module.exports = app;
 

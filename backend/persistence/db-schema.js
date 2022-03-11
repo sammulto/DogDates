@@ -1,4 +1,5 @@
 //this file defines the schema for MongoDB collections
+'use strict';
 
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');

@@ -1,4 +1,4 @@
-require('dotenv').config();
+'use strict';
 
 const bcrypt = require("bcryptjs");
 const webtoken = require("jsonwebtoken");

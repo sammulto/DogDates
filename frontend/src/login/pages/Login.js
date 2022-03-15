@@ -38,7 +38,7 @@ export default function Login(props) {
 
   return (
     <React.Fragment>
-      <div className="formHolder">
+      <div className="login-formHolder">
         <Formik
           //form data schema
           initialValues={{
@@ -58,12 +58,12 @@ export default function Login(props) {
         >
           {() => (
             //login form
-            <Form className="form">
-              <h1 className="title">Log in</h1>
+            <Form className="login-form">
+              <h1 className="login-title">Log in</h1>
               <TextInput name="email" label="Email" type="text" data-testid="email"/>
               <TextInput name="password" label="Password" type="password" data-testid="password" />
               <div
-                className="errorMessage" data-testid="errorMsg"
+                className="login-errorMessage" data-testid="errorMsg"
                 style={showError ? { display: "block" } : { display: "none" }}
               >
                 {" "}

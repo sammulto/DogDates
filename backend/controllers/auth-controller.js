@@ -1,4 +1,4 @@
-require('dotenv').config();
+'use strict';
 
 const bcrypt = require('bcryptjs');
 const webtoken = require('jsonwebtoken');
@@ -77,6 +77,8 @@ const userLogin = async (req, res, next) => {
 
     //send response
     const response = existingUser.toObject();
+    //update token in HTTP response
+    response.token = newToken;
     //remove password and other unneeded elements from response
     response.password = undefined;
     response._id = undefined;

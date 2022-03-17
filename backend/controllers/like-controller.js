@@ -46,7 +46,7 @@ const addUidToLikeList = async (req, res, next) => {
 
     //validate if both users exist
     if (targetUserViewList.length === 0 || userViewList.length === 0) {
-        throw DBfailedHttpError;
+      return next(new HttpError("User ID not found!", 404));
     }
 
     //check if they're match
@@ -66,15 +66,11 @@ const addUidToLikeList = async (req, res, next) => {
       await targetUserViewList.save();
       await userViewList.save();
 
-      console.log("THERE'S A MATCH!");
-
     }else{
 
       //if not match, update current user's liked list
       userViewList.liked.push(targetUid);
       await userViewList.save();
-
-      console.log("list updated");
     }
 
   }catch(err){

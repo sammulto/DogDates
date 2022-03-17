@@ -66,7 +66,7 @@ const getNextUser = async (req, res, next) => {
         .select("-_id -email -password -token -__v").exec();
       
       if(responseInfo.length === 0){
-        throw DBfailedHttpError;
+        return next(new HttpError("User ID not found!", 404));
       }else{
         responseInfo = responseInfo[0];
       }

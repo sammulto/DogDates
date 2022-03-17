@@ -56,7 +56,7 @@ const getMatchedUserInfo = async (req, res, next) => {
       }
   
       //send response
-      res.status(200).json(matchedUserInfo);
+      res.status(200).json(matchedUserInfo[0]);
   
     }catch(err){
       // return 500 error if DB operation fails
@@ -66,6 +66,6 @@ const getMatchedUserInfo = async (req, res, next) => {
   
   };
 
-  
+
 exports.getMatchedList = getMatchedList;
 exports.getMatchedUserInfo = getMatchedUserInfo;

@@ -10,10 +10,10 @@ const HttpError = require('./models/http-error');
 const authenticator = require('./middleware/authenticator');
 const usersRoutes = require('./routes/users-routes');
 const likeRoutes = require('./routes/like-routes');
-const matchRoutes = require('./routes/match-routes');
+//const matchRoutes = require('./routes/match-routes');
 const authRoutes = require('./routes/auth-routes');
 const signupRoutes = require('./routes/signup-routes');
-const viewRoutes = require('./routes/view-routes');
+//const viewRoutes = require('./routes/view-routes');
 
 const app = express();
 
@@ -51,9 +51,9 @@ app.use(authenticator);
 /////////////////////////////////////////
 
 app.use('/api/users', usersRoutes);
-app.use('/api/view',viewRoutes);
+//app.use('/api/view',viewRoutes);
 app.use('/api/like', likeRoutes);
-app.use('/api/match', matchRoutes);
+//app.use('/api/match', matchRoutes);
 
 //handle pictures request
 app.use('/upload/pictures', express.static(path.join('upload', 'pictures')));

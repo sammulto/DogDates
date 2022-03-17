@@ -13,7 +13,7 @@ const likeRoutes = require('./routes/like-routes');
 //const matchRoutes = require('./routes/match-routes');
 const authRoutes = require('./routes/auth-routes');
 const signupRoutes = require('./routes/signup-routes');
-//const viewRoutes = require('./routes/view-routes');
+const viewRoutes = require('./routes/view-routes');
 
 const app = express();
 
@@ -51,7 +51,7 @@ app.use(authenticator);
 /////////////////////////////////////////
 
 app.use('/api/users', usersRoutes);
-//app.use('/api/view',viewRoutes);
+app.use('/api/view',viewRoutes);
 app.use('/api/like', likeRoutes);
 //app.use('/api/match', matchRoutes);
 

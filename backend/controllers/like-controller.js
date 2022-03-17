@@ -24,7 +24,7 @@ const addUidToLikeList = async (req, res, next) => {
 
   //verify if the token holder's uid matchs the req's uid
   if(userUid !== tokenUid){
-    return next(new HttpError("User doesn't match with the token!", 404));
+    return next(new HttpError("User doesn't match with the token!", 401));
   }
 
   const { uid:targetUid } = req.body;

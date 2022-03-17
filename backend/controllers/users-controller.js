@@ -37,6 +37,8 @@ const getUserById = async (req, res, next) => {
 };
 
 const updateUserById = async (req, res, next) => {
+
+  //reqeust input validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -44,9 +46,8 @@ const updateUserById = async (req, res, next) => {
     );
   }
 
-  const uid = req.params.uid;
   const inputUid = req.params.uid;
-  const tokenUid = req.userData.uid;
+  const tokenUid = req.userData.uid; //userData is provided by authenticator middleware
 
   //verify if the token holder's uid matchs the req's uid
   if(inputUid !== tokenUid){
@@ -62,7 +63,7 @@ const updateUserById = async (req, res, next) => {
     picturePath = req.file.path;
   }
 
-  //update user info
+  //get current user info from DB
   const result = await UserModel.find({ uid: inputUid }).exec();
   if (result.length !== 0) user = result[0];
 
@@ -81,15 +82,15 @@ const updateUserById = async (req, res, next) => {
         hashedPassword = await bcrypt.hash(req.body.password, 10);
       } catch (error) {
         return next(new HttpError("Something went wrong, please try again.", 500));
+      }
+      //if req contains an image, handle image update
+      let picturePath = user.picturePath;
+      if(req.file.path){
+        picturePath = req.file.path;
+      }
     }
 
-    //if req contains an image, handle image update
-    let picturePath = user.picturePath;
-    if(req.file.path){
-      picturePath = req.file.path;
-    }
-
-  }
+    //update user info
     UserModel.findByIdAndUpdate(
       user._id,
       { 

@@ -145,4 +145,3 @@ const deleteUserById = async (req, res, next) => {
 exports.getUserById = getUserById;
 exports.updateUserById = updateUserById;
 exports.deleteUserById = deleteUserById;
-exports.getUserList = getUserList;

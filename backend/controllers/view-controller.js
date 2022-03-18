@@ -27,7 +27,7 @@ const getNextUser = async (req, res, next) => {
 
     //check if user exists in DB
     if (userViewList.length === 0 || userInfo.length === 0) {
-        throw DBfailedHttpError;
+      return next(new HttpError("UID not found!", 404));
     }
 
     //if the unseen user list is empty, add unseen user to the list

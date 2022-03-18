@@ -10,12 +10,6 @@ const DBfailedHttpError = new HttpError(
   500
 );
 
-const getUserList = async (req, res, next) => {
-  //hide the sensitive properties from query results 
-  const users = await UserModel.find().select('-password -token -email -_id -__v').exec();
-  res.status(201).json(users);
-};
-
 const getUserById = async (req, res, next) => {
   const uid = req.params.uid;
 
@@ -33,7 +27,7 @@ const getUserById = async (req, res, next) => {
     return next(new HttpError("User does not exist!", 404));
   }
 
-  res.status(201).json(user);
+  res.status(200).json(user);
 };
 
 const updateUserById = async (req, res, next) => {

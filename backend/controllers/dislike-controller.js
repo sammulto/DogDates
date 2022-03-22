@@ -41,8 +41,11 @@ const addUidToDislikeList = async (req, res, next) => {
     //fetch the current user's disliked list
     let userViewList = await viewListModel.findOne({ uid:userUid }).exec();
 
-    //validate if the user exists
-    if (userViewList.length === 0) {
+    //get the disliked user's View list
+    let targetUserViewList = await viewListModel.findOne({ uid:targetUid }).exec();
+
+    //validate if the users exist
+    if (!userViewList || !targetUserViewList) {
       return next(new HttpError("User ID not found!", 404));
     }
 

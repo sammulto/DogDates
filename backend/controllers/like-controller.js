@@ -45,7 +45,7 @@ const addUidToLikeList = async (req, res, next) => {
     let userViewList = await viewListModel.findOne({ uid:userUid }).exec();
 
     //validate if both users exist
-    if (targetUserViewList.length === 0 || userViewList.length === 0) {
+    if (!targetUserViewList || !userViewList) {
       return next(new HttpError("User ID not found!", 404));
     }
 

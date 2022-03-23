@@ -127,10 +127,10 @@ describe('Test get a list of users(in uid) that are matched with the current use
     })
   })
 
-  // test('With correct uid, no one match with user3', async () => {
-  //   return request(app).get('/api/match/list/' + uid3).set('Authorization', 'Bearer ' + token3).send({
-  //   }).expect(200).then((res) =>{
-  //     expect(res.body).toEqual(uid1);
-  //   })
-  // })
+  test('With correct uid, no one match with user3', async () => {
+    return request(app).get('/api/match/list/' + uid3).set('Authorization', 'Bearer ' + token3).send({
+    }).expect(200).then((res) =>{
+      expect(res.body).toEqual([]);
+    })
+  })
 });

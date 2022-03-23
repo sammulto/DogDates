@@ -101,7 +101,6 @@ describe('Test get a list of users(in uid) that are matched with the current use
     }).expect(401);
   })
 
-  // should be 404
   test('With non-created uid', async () => {
     return request(app).get('/api/match/list/' + "123").set('Authorization', 'Bearer ' + token1).send({
     }).expect(401);

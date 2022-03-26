@@ -3,7 +3,6 @@ on:
   pull_request:
   push:
     paths: ['backend/**']
-  pull_request:
   
 env:
   DB_USER: backend_db

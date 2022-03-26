@@ -27,4 +27,3 @@ jobs:
           cd frontend
           npm ci
           npm test
-

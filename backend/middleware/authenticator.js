@@ -1,4 +1,5 @@
 //This middleware valid the token from request header: [authorization] 
+'use strict';
 
 const webtoken = require('jsonwebtoken');
 const HttpError = require('../models/http-error');

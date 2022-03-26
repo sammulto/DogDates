@@ -1,42 +1,71 @@
-const HttpError = require('../models/http-error');
-const fakeMatchList = require('../testingDatabase/fake-match.json');
+"use strict";
 
-const getListByUser = (req, res, next) => {
-    const uid = req.params.uid;
+const HttpError = require("../models/http-error");
+const { UserModel, viewListModel } = require("../persistence/db-schema");
+const { validationResult } = require("express-validator");
 
-    //check if the uid valid
-    const matchedList = fakeMatchList.find(list =>{
-        return list.id === uid;
-    });
+const DBfailedHttpError = new HttpError(
+  "Database operation failed, please try again",
+  500
+);
 
-    //return error if uid is not valid
-    if(!matchedList){
-        return next(new HttpError('User does not exist!', 404));
+const getMatchedList = async (req, res, next) => {
+
+  const userUid = req.params.uid;
+  const tokenUid = req.userData.uid; //userData is provided by authenticator middleware
+
+  //verify if the token holder's uid matchs the req's uid
+  if(userUid !== tokenUid){
+    return next(new HttpError("User doesn't match with the token!", 401));
+  }
+
+  try{
+
+    //fetch the current user's match list
+    let userViewList = await viewListModel.findOne({ uid:userUid }).exec();
+
+    //validate if the user exists
+    if (userViewList.length === 0) {
+      return next(new HttpError("User ID not found!", 404));
     }
 
-    res.status(201).json({matchedList});
-}
+    //send response
+    res.status(200).json(userViewList.matched);
 
+  }catch(err){
+    // return 500 error if DB operation fails
+    console.log(err); 
+    return next(DBfailedHttpError);
+  }
 
-const updateListByUser = (req, res, next) => {
-    const uid = req.params.uid;
+};
 
-    //check if the uid valid
-    const matchedList = fakeMatchList.find(list =>{
-        return list.id === uid;
-    });
+const getMatchedUserInfo = async (req, res, next) => {
 
-    //return error if uid is not valid
-    if(!matchedList){
-        return next(new HttpError('User does not exist!', 404));
+    const targetUid = req.params.uid;
+
+    try{
+  
+      //fetch the target user's info
+      const matchedUserInfo = await UserModel.find({ uid: targetUid })
+      .select("-_id -password -token -__v").exec();
+  
+      //validate if the user exists
+      if (matchedUserInfo.length === 0) {
+        return next(new HttpError("User ID not found!", 404));
+      }
+  
+      //send response
+      res.status(200).json(matchedUserInfo[0]);
+  
+    }catch(err){
+      // return 500 error if DB operation fails
+      console.log(err); 
+      return next(DBfailedHttpError);
     }
-
-    //TO-DO update user's matched list
-
-
-    res.status(201).json({msg: 'User list updated', matchedList});
-}
+  
+  };
 
 
-exports.getListByUser = getListByUser;
-exports.updateListByUser = updateListByUser;
+exports.getMatchedList = getMatchedList;
+exports.getMatchedUserInfo = getMatchedUserInfo;

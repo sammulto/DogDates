@@ -1,5 +1,6 @@
 name: Backend Testing
 on:
+  pull_request:
   push:
     paths: ['backend/**']
   pull_request:
@@ -18,10 +19,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-      - name: Install backend 
-        working-directory: ./backend
-        run: npm install
-     
-      - name: Backend tests 
-        working-directory: ./backend
-        run: npm test
+      - name: Build Backend 
+        run: |
+          cd backend
+          npm ci
+          npm run build --if-present
+          
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Test Backend  
+        run: |
+          cd backend
+          npm ci
+          npm test

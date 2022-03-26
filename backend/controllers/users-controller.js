@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpError = require("../models/http-error");
 const { UserModel } = require("../persistence/db-schema");
 const { validationResult } = require("express-validator");
@@ -7,12 +9,6 @@ const DBfailedHttpError = new HttpError(
   "Database operation failed, please try again",
   500
 );
-
-const getUserList = async (req, res, next) => {
-  //hide the sensitive properties from query results 
-  const users = await UserModel.find().select('-password -token -email -_id -__v').exec();
-  res.status(201).json(users);
-};
 
 const getUserById = async (req, res, next) => {
   const uid = req.params.uid;
@@ -31,10 +27,12 @@ const getUserById = async (req, res, next) => {
     return next(new HttpError("User does not exist!", 404));
   }
 
-  res.status(201).json(user);
+  res.status(200).json(user);
 };
 
 const updateUserById = async (req, res, next) => {
+
+  //reqeust input validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -42,9 +40,8 @@ const updateUserById = async (req, res, next) => {
     );
   }
 
-  const uid = req.params.uid;
   const inputUid = req.params.uid;
-  const tokenUid = req.userData.uid;
+  const tokenUid = req.userData.uid; //userData is provided by authenticator middleware
 
   //verify if the token holder's uid matchs the req's uid
   if(inputUid !== tokenUid){
@@ -60,7 +57,7 @@ const updateUserById = async (req, res, next) => {
     picturePath = req.file.path;
   }
 
-  //update user info
+  //get current user info from DB
   const result = await UserModel.find({ uid: inputUid }).exec();
   if (result.length !== 0) user = result[0];
 
@@ -79,15 +76,15 @@ const updateUserById = async (req, res, next) => {
         hashedPassword = await bcrypt.hash(req.body.password, 10);
       } catch (error) {
         return next(new HttpError("Something went wrong, please try again.", 500));
+      }
+      //if req contains an image, handle image update
+      let picturePath = user.picturePath;
+      if(req.file.path){
+        picturePath = req.file.path;
+      }
     }
 
-    //if req contains an image, handle image update
-    let picturePath = user.picturePath;
-    if(req.file.path){
-      picturePath = req.file.path;
-    }
-
-  }
+    //update user info
     UserModel.findByIdAndUpdate(
       user._id,
       { 
@@ -148,4 +145,3 @@ const deleteUserById = async (req, res, next) => {
 exports.getUserById = getUserById;
 exports.updateUserById = updateUserById;
 exports.deleteUserById = deleteUserById;
-exports.getUserList = getUserList;

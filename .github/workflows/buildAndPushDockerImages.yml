@@ -1,12 +1,16 @@
-name: docker
+name: Build And Push Docker Images
 
 on:
+#   pull_request:
+#     types: [closed]
+#     branches:
+#       - master
   push:
     branches:
       - 'fullStack'
 
 jobs:
-  docker:
+  Build-And-Push-Docker-Images:
     runs-on: ubuntu-latest
     steps:
       - 
@@ -23,13 +27,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - 
-        name: Build And Push Docker Images
+        name: Frontend - Build And Push Docker Images
+        uses: docker/build-push-action@v2
+        with:
+          context: ./frontend
+          push: true
+          tags: sammulto/dogdates:frontend-git
+      - 
+        name: Backend - Build And Push Docker Images
         uses: docker/build-push-action@v2
         with:
           context: ./backend
           push: true
           tags: sammulto/dogdates:backend-git
-      - 
-        name: Result
-        run: echo ${{ steps.docker_build.outputs.digest }}
-        

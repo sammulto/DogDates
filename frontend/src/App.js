@@ -9,8 +9,10 @@ import Signup from "./signup/pages/Signup";
 import Account from "./user/pages/Account";
 import InfoUpdated from './user/pages/InfoUpdated'
 import UpdateAccInfo from './user/pages/UpdateAccInfo';
-import DeleteAccountWarning from './user/pages/DeleteAccountWarning'
-import AccountDeleted from './user/pages/AccountDelected'
+import DeleteAccountWarning from './user/pages/DeleteAccountWarning';
+import AccountDeleted from './user/pages/AccountDelected';
+import PlayDates from './user/pages/PlayDates';
+import Matches from './user/pages/Matches'
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
 
@@ -26,8 +28,10 @@ function App() {
     routes = (
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/playDates" element={<PlayDates API_URL={API_URL}/>}/>
         <Route path="/account" element={<Account API_URL={API_URL}/>}/>
         <Route path="/updateAccInfo" element={<UpdateAccInfo API_URL={API_URL}/>}/>
+        <Route path="/matches" element={<Matches API_URL={API_URL}/>}/>
         <Route path="/deleteaccountwarning" element={<DeleteAccountWarning API_URL={API_URL}/>}/>
         <Route path="/*" element={<Account API_URL={API_URL}/>}/>
       </Routes>

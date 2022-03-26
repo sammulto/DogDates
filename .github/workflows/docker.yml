@@ -28,3 +28,7 @@ jobs:
         with:
           context: ./backend
           tags: sammulto/dogdates:BackendFromGit
+      - 
+        name: Result
+        run: echo ${{ steps.docker_build.outputs.digest }}
+        

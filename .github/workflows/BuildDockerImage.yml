@@ -5,10 +5,9 @@ on:
 #     types: [closed]
 #     branches:
 #       - master
-#   push:
-#     branches:
-#       - 'fullStack'
-  [workflow_dispatch]
+  push:
+    branches:
+      - 'fullStack'
 
 jobs:
   Build-And-Push-Docker-Images:
@@ -41,3 +40,4 @@ jobs:
           context: ./backend
           push: true
           tags: sammulto/dogdates:backend-git
+          

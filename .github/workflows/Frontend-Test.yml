@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     paths: ['frontend/**']
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,3 +27,4 @@ jobs:
           cd frontend
           npm ci
           npm test
+

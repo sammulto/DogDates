@@ -1,16 +1,16 @@
-name: Build and Publish Docker Image
+name: docker
 
 on:
   push:
     branches:
-      - 'fullstack'
+      - 'fullStack'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
       - 
-        name: Checkout Code
+        name: Checkout
         uses: actions/checkout@v2
       - 
         name: Docker Buildx Set Up
@@ -28,6 +28,3 @@ jobs:
         with:
           context: ./backend
           tags: sammulto/dogdates:BackendFromGit
-      - 
-        name: Action Result
-        run: echo ${{ steps.docker_build.outputs.digest }}

@@ -73,14 +73,9 @@ const getNextUser = async (req, res, next) => {
 
       //update DB record
       await userViewList.save();
-
+    }
       //return unseen user's info 
       res.status(200).json(responseInfo);
-
-    }else{
-     //return a 404 error
-     return next(new HttpError("No unviewed user is found!", 404));
-    }
     
   }catch(err){
     // return error if DB operation fails

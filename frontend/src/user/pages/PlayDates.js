@@ -3,17 +3,27 @@ import axios from "axios";
 import { AuthContext } from "../../shared/context/auth-context";
 
 export default function PlayDates(props) {
-  const [potentialUsers, setPotentialUsers] = useState();
+  //current logged in user
   const { userInfo } = useContext(AuthContext);
-  const [likeUser, setLikeUser] = useState();
   const auth = useContext(AuthContext);
+
+  //getting the next user state
+  const [potentialUsers, setPotentialUsers] = useState();
+  const [counter, setCounter] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  //error hooks
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
+      setShowError(false);
       if (userInfo) {
+        setLoading(true);
         axios
           .get(
-            //send post request to backend
+            //send get request to backend
             `${props.API_URL}/api/view/${userInfo.uid}`,
             {
               headers: {
@@ -23,29 +33,81 @@ export default function PlayDates(props) {
             }
           )
           .then((response) => {
-            console.log("response ", response);
-            setPotentialUsers(response.data);
-            setLikeUser(false);
+            //if no new unseen users, set potential users to undefined
+            if (response.data.length === 0) setPotentialUsers();
+            else setPotentialUsers(response.data);
+            setLoading(false);
           })
-          .catch((errorGettingUsers) => {});
+          .catch((errorGettingUsers) => {
+            setShowError(true);
+            setErrorMessage(errorGettingUsers.response.data.error);
+            setPotentialUsers(false);
+            setLoading(false);
+          });
       }
     };
     fetchUsers();
-  }, [likeUser]);
+  }, [props.API_URL, userInfo, counter]);
 
   const likeUserHandler = () => {
-    setLikeUser(true);
+    setLoading(true);
+    axios
+      .patch(
+        //send patch request to backend
+        `${props.API_URL}/api/like/${userInfo.uid}`,
+        { uid: potentialUsers.uid },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setLoading(false);
+        //increment counter so our useEffect for fetch users is triggered
+        setCounter(counter + 1);
+      })
+      .catch((errorLikingUser) => {
+        setShowError(true);
+        setErrorMessage(errorLikingUser.response.data.error);
+      });
   };
 
   const dislikeUserHandler = () => {
-    
+    axios
+      .patch(
+        //send patch request to backend
+        `${props.API_URL}/api/dislike/${userInfo.uid}`,
+        { uid: potentialUsers.uid },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      )
+      .then((response) => {
+        setLoading(false);
+        //increment counter so our useEffect for fetch users is triggered
+        setCounter(counter + 1);
+      })
+      .catch((errorDislikingUser) => {
+        setShowError(true);
+        setErrorMessage(errorDislikingUser.response.data.error);
+      });
   };
 
   return (
     <div>
-      {console.log("userInfo >> ", userInfo)}
-      {auth.isLoggedIn && potentialUsers && (
+      {auth.isLoggedIn && potentialUsers && !loading && (
         <React.Fragment>
+          <div
+            className="login-errorMessage"
+            data-testid="errorMsg"
+            style={showError ? { display: "block" } : { display: "none" }}
+          >
+            {" "}
+            {errorMessage}{" "}
+          </div>
           <div className="user-info-box">
             <div className="user-info-content">
               <h2 className="user-info-title">{potentialUsers.ownerName}</h2>
@@ -92,6 +154,19 @@ export default function PlayDates(props) {
                   onClick={dislikeUserHandler}
                 />
               </div>
+            </div>
+          </div>
+        </React.Fragment>
+      )}
+
+      {auth.isLoggedIn && !potentialUsers && !loading && (
+        <React.Fragment>
+          <div className="user-info-box">
+            <div className="user-info-content">
+              <h2 className="no-new-dates-msg">
+                Sorry, there are no new play dates available. <br></br>
+                Please come back later.
+              </h2>
             </div>
           </div>
         </React.Fragment>

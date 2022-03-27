@@ -161,7 +161,7 @@ describe('Test get one user info', () => {
   test('only user1 left in DB, so there is no other user', async () => {
     return request(app).get('/api/view/' + uid1).set('Authorization', 'Bearer ' + token1).send({
     }).expect(200).then((res) => {
-      expect();
+      expect(res.body === undefined);
     });
   })
 

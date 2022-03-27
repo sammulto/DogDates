@@ -1,0 +1,18 @@
+.match-list {
+    list-style: none;
+    margin: 1rem auto;
+    padding: 0;
+    width: 90%;
+    max-width: 40rem;
+    text-align: center;
+  }
+
+  .matches-title{
+    display: flex;
+    justify-content: center;
+    color: #03305f;
+    font-size: 2.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0.3em;
+    text-align: center;
+}

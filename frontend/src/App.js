@@ -18,7 +18,8 @@ import { useAuth } from "./shared/hooks/auth-hook";
 
 function App() {
   //////////////////// Change here for API SERVER URL ///////////////
-  const API_URL = "https://www.sammul.live";
+  const API_URL = "http://www.sammul.live";
+  const API_URL_IMAGES = "http://www.sammul.live";
   //////////////////////////////////////////////////////////////////
   const { token, login, logout, userId, userInfo } = useAuth();
   let routes;
@@ -28,12 +29,12 @@ function App() {
     routes = (
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/playDates" element={<PlayDates API_URL={API_URL}/>}/>
+        <Route path="/playDates" element={<PlayDates API_URL={API_URL} API_URL_IMAGES={API_URL_IMAGES}/>}/>
         <Route path="/account" element={<Account API_URL={API_URL}/>}/>
         <Route path="/updateAccInfo" element={<UpdateAccInfo API_URL={API_URL}/>}/>
-        <Route path="/matches" element={<Matches API_URL={API_URL}/>}/>
+        <Route path="/matches" element={<Matches API_URL={API_URL} API_URL_IMAGES={API_URL_IMAGES}/>}/>
         <Route path="/deleteaccountwarning" element={<DeleteAccountWarning API_URL={API_URL}/>}/>
-        <Route path="/*" element={<Account API_URL={API_URL}/>}/>
+        <Route path="/" element={<Home/>}/>
       </Routes>
     );
   } else {

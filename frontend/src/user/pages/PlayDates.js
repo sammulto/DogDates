@@ -51,7 +51,7 @@ export default function PlayDates(props) {
               <h2 className="user-info-title">{potentialUsers.ownerName}</h2>
               <img
                 className="user-info-image"
-                src={props.API_URL + "/" + potentialUsers.pictures}
+                src={props.API_URL_IMAGES + "/" + potentialUsers.pictures}
                 alt="Potential User Profile"
               />
               <div className="user-info-line">

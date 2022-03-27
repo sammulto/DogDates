@@ -24,6 +24,7 @@ export default function MatchList(props) {
           imagePath={user.pictures}
           dogName={user.dogName}
           city={user.city}
+          email={user.email}
           description={user.description}
           pictures={user.pictures}
           API_URL_IMAGES={API_URL_IMAGES}

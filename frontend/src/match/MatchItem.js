@@ -2,6 +2,7 @@ import React from "react";
 
 export default function MatchItem(props) {
     const imagePath = props.API_URL_IMAGES+ "/" + props.pictures;
+    console.log(props);
   return (
     <React.Fragment>
       <div className="user-info-box">
@@ -18,6 +19,10 @@ export default function MatchItem(props) {
           <div className="user-info-line">
             <span className="material-icons user-info-icon city">place</span>
             <div className="user-info-value">{props.city}</div>
+          </div>
+          <div className="user-info-line">
+            <span className="material-icons user-info-icon city">mail</span>
+            <div className="user-info-intro-value">{props.email}</div>
           </div>
           <div className="user-info-intro-box">
             <span className="material-icons user-info-icon-intro">3p</span>

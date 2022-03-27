@@ -45,7 +45,7 @@ export default function Matches(props) {
                   axios
                     .get(
                       //send get request to backend
-                      `${props.API_URL}/api/users/${matchedUser}`,
+                      `${props.API_URL}/api/match/${matchedUser}`,
                       {
                         headers: {
                           Authorization: `Bearer ${userInfo.token}`,

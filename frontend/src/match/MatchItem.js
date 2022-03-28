@@ -2,7 +2,6 @@ import React from "react";
 
 export default function MatchItem(props) {
     const imagePath = props.API_URL_IMAGES+ "/" + props.pictures;
-    console.log(props);
   return (
     <React.Fragment>
       <div className="user-info-box">

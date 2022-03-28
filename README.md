@@ -38,7 +38,7 @@ This project will be similar to a dating app but will be for making playdates fo
 ![System architecture block diagram](https://github.com/Aiphox/DogDates/blob/main/System%20Architecture.PNG)
 
 ### Backend Class Architecture Diagram
-![System architecture block diagram](https://github.com/Aiphox/DogDates/blob/main/Class%20Diagram%20New.PNG)
+![System architecture block diagram](https://github.com/DogDatesComp4350/DogDates/blob/main/Class%20Diagram%20S3.PNG)
 
 ## Testing Plan
 * A testing plan can be found [here](https://github.com/Aiphox/DogDates/blob/main/DogDates_Testing_Plan.pdf).

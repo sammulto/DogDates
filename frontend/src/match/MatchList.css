@@ -1,13 +1,4 @@
-.match-list {
-    list-style: none;
-    margin: 1rem auto;
-    padding: 0;
-    width: 90%;
-    max-width: 40rem;
-    text-align: center;
-  }
-
-  .matches-title{
+.matches-title{
     display: flex;
     justify-content: center;
     color: #03305f;

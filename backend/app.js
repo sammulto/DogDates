@@ -28,7 +28,6 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   // handle preflight request
   if (req.method === "OPTIONS") {
-    res.header('Access-Control-Allow-Origin', '*');
     return res.status(200).send();
   }
   next();

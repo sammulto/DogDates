@@ -15,7 +15,7 @@ export default function MatchList(props) {
 
   const API_URL_IMAGES = props.API_URL_IMAGES;
   return (
-    <ul className="match-list">
+    <ul>
       <h1 className="matches-title">My Matches</h1>
       {props.items.map((user) => (
         <MatchItem

@@ -2,18 +2,19 @@
 'use strict';
 
 const fs = require('fs');
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
 const HttpError = require('./models/http-error');
+const authenticator = require('./middleware/authenticator');
 const usersRoutes = require('./routes/users-routes');
 const likeRoutes = require('./routes/like-routes');
+const dislikeRoutes = require('./routes/dislike-route');
 const matchRoutes = require('./routes/match-routes');
 const authRoutes = require('./routes/auth-routes');
 const signupRoutes = require('./routes/signup-routes');
-const authenticator = require('./middleware/authenticator');
+const viewRoutes = require('./routes/view-routes');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
   // handle preflight request
   if (req.method === "OPTIONS") {
+    res.header('Access-Control-Allow-Origin', '*');
     return res.status(200).send();
   }
   next();
@@ -51,9 +53,9 @@ app.use(authenticator);
 /////////////////////////////////////////
 
 app.use('/api/users', usersRoutes);
-
-//TO-DO to be implement in Sprint 3
+app.use('/api/view',viewRoutes);
 app.use('/api/like', likeRoutes);
+app.use('/api/dislike', dislikeRoutes);
 app.use('/api/match', matchRoutes);
 
 //handle pictures request

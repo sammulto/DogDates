@@ -63,21 +63,6 @@ afterAll ( async () => {
 
 
 
-describe('Test get a list of all user info', () => {
-    test('Without authorized token', async () => {
-        return request(app).get('/api/users').send({
-        }).expect(401);
-    })
-
-    test('With authorized token', async () => {
-        return request(app).get('/api/users').set('Authorization', 'Bearer ' + token1).send({
-        }).expect(201);
-    })
-});
-
-
-
-
 describe('Test get one user info', () => {
     test('Without authorized token', async () => {
         return request(app).get('/api/users' + uid1).send({
@@ -93,7 +78,7 @@ describe('Test get one user info', () => {
 
     test('With correct uid', async () => {
         return request(app).get('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-        }).expect(201);
+        }).expect(200);
     })
 });
 

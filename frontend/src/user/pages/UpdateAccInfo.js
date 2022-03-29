@@ -130,10 +130,10 @@ const UpdateAccountInfo = (props) => {
                 errorText=" "
               />
               {touched.image && errors.image ? (
-                <div className="errorMessage">{errors.image}</div>
+                <div className="errorMessage-image">{errors.image}</div>
               ) : null}
               <div
-                className="errorMessage" data-testid="errorMsg"
+                className="errorMessage-server" data-testid="errorMsg"
                 style={showError ? { display: "block" } : { display: "none" }}
               >
                 {" "}

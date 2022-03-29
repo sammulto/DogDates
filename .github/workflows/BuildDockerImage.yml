@@ -34,16 +34,22 @@ jobs:
           push: true
           tags: sammulto/dogdates:frontend-git
       - 
+        name: Create env file for backend
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_DB_USER: ${{ secrets.DB_USER }}
+          envkey_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          envkey_DB_NAME: dogdatesDevDB
+          envkey_TOKEN_SCERT: ${{ secrets.TOKEN_SCERT }}
+          envkey_SERVER_PORT: 5000
+          directory: /backend
+          file_name: .env
+          fail_on_empty: false
+      - 
         name: Backend - Build And Push Docker Images
         uses: docker/build-push-action@v2
-        env:
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_NAME: dogdatesDevDB
-          TOKEN_SCERT: ${{ secrets.TOKEN_SCERT }}
-          SERVER_PORT: 5000
         with:
           context: ./backend
           push: true
           tags: sammulto/dogdates:backend-git
-          
+

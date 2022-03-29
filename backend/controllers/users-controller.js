@@ -69,6 +69,25 @@ const updateUserById = async (req, res, next) => {
     //user exists, replace the fields in the database
   }else {
 
+    //check if new email already exists
+    if(user.email != email){
+      let userExists = true;
+      try {
+        userExists = await getUserByEmail(email);
+      } catch (error) {
+        return next(error);
+      }
+
+      if (userExists) {
+        return next(
+          new HttpError(
+            "User name already exists, please choose a new user name.",
+            400
+          )
+        );
+      }
+    }
+    
     //if req contains a password, handle password update
     let hashedPassword = user.password;
     if(req.body.password){
@@ -140,6 +159,21 @@ const deleteUserById = async (req, res, next) => {
 
   //send response
   res.status(201).json({ msg: "user deleted.", user });
+};
+
+const getUserByEmail = async (email) => {
+  let user = false;
+
+  try {
+    let result = await UserModel.find({ email: email }).exec();
+    if (result.length !== 0) {
+      user = result[0];
+    }
+  } catch (error) {
+    throw DBfailedHttpError;
+  }
+
+  return user;
 };
 
 exports.getUserById = getUserById;

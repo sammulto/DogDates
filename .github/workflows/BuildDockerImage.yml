@@ -42,7 +42,7 @@ jobs:
           envkey_DB_NAME: dogdatesDevDB
           envkey_TOKEN_SCERT: ${{ secrets.TOKEN_SCERT }}
           envkey_SERVER_PORT: 5000
-          directory: /backend
+          directory: backend
           file_name: .env
           fail_on_empty: false
       - 

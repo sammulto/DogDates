@@ -4,3 +4,18 @@
   margin-left: auto;
   justify-content: center;
 }
+
+.like-btn {
+  padding: 1em 1em 1em 1em;
+  width: 10em;
+  border: none;
+  background-color: #083D77;
+  color: white;
+  border-radius: 0.5em;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-top: 3em;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-decoration: none;
+}

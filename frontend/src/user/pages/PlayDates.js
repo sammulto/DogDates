@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../shared/context/auth-context";
 
+import './PlayDates.css'
+
 export default function PlayDates(props) {
   //current logged in user
   const { userInfo } = useContext(AuthContext);
@@ -140,7 +142,7 @@ export default function PlayDates(props) {
                   {potentialUsers.description}
                 </div>
               </div>
-              <div className="btn-div">
+              <div>
                 <input
                   type="submit"
                   className="like-btn"
@@ -149,7 +151,7 @@ export default function PlayDates(props) {
                 />
                 <input
                   type="submit"
-                  className="dislike-btn"
+                  className="like-btn"
                   value="Dislike"
                   onClick={dislikeUserHandler}
                 />

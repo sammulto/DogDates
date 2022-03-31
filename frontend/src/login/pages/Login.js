@@ -7,7 +7,13 @@ import { AuthContext } from "../../shared/context/auth-context";
 import "./Login.css";
 import TextInput from "../../shared/components/FormElements/TextInput";
 
-
+/****************************************************************************************** 
+ * 
+ * Login.js
+ * 
+ * This page allows the user to log in using their email and password
+ * 
+******************************************************************************************/
 export default function Login(props) {
   const auth = useContext(AuthContext);
   //hooks

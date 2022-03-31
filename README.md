@@ -41,7 +41,7 @@ This project will be similar to a dating app but will be for making playdates fo
 ![System architecture block diagram](https://github.com/DogDatesComp4350/DogDates/blob/main/Class%20Diagram%20S3.PNG)
 
 ## Testing Plan
-* A testing plan can be found [here](https://github.com/Aiphox/DogDates/blob/main/DogDates_Testing_Plan.pdf).
+* A testing plan can be found [here](https://github.com/Aiphox/DogDates/blob/main/Dog_Dates_Testing_Plan.pdf).
 
 ## Meeting Minutes
 * Meeting minutes can be found [here](https://github.com/Aiphox/DogDates/wiki/Meetings-Tracking#meeting-minutes).

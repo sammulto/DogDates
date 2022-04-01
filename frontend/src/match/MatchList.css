@@ -1,0 +1,9 @@
+.matches-title{
+    display: flex;
+    justify-content: center;
+    color: #03305f;
+    font-size: 2.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0.3em;
+    text-align: center;
+}

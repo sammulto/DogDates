@@ -38,9 +38,8 @@
     background-color: #2669f8;
   }
 
-.errorMessage {
-    position: flex;
-    top: -10em;
+.errorMessage-image {
+    position: block;
     right: 0.2em;
     padding: 0 0.4em;
     background-color: white;
@@ -50,3 +49,13 @@
     z-index: 2;
 }
 
+.errorMessage-server {
+    position: block;
+    right: 0.2em;
+    padding: 1em 0.4em;
+    background-color: white;
+    color: #eb0404;
+    font-weight: 500;
+    font-size: 1em;
+    z-index: 2;
+}

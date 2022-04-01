@@ -2,6 +2,13 @@ import React from "react";
 
 import "./AccountDelected.css";
 
+/******************************************************************************* 
+ * 
+ * AccountDeleted.js
+ * 
+ * This page displays a message that the user has deleted their account
+ * 
+********************************************************************************/
 const AccountDelected = () => {
 
     const imageURL = "https://cdn.pixabay.com/photo/2021/03/02/21/22/dog-6063829_960_720.jpg";

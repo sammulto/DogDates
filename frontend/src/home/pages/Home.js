@@ -12,6 +12,14 @@ import { AuthContext } from "../../shared/context/auth-context";
 
 import "./Home.css";
 
+/****************************************************************************************** 
+ * 
+ * Home.js
+ * 
+ * This is the main home page. 
+ * It has buttons that allow the user to register a new account or log in * 
+ * 
+******************************************************************************************/
 export default function Home(props) {
   const auth = useContext(AuthContext);
   const { userInfo } = useContext(AuthContext);

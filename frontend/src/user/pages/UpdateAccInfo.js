@@ -9,6 +9,14 @@ import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./UpdateAccInfo.css";
 
+/****************************************************************************************** 
+ * 
+ * UdateAccountInfo.js
+ * 
+ * This page displays allows the user to change their account information including:
+ * email, password, name, dog name, location, picture, description
+ * 
+******************************************************************************************/
 const UpdateAccountInfo = (props) => {
   const { userInfo } = useContext(AuthContext);
   const auth = useContext(AuthContext);

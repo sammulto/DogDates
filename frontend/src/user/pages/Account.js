@@ -3,6 +3,14 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./Account.css";
 
+/******************************************************************************* 
+ * 
+ * Account.js
+ * 
+ * This page displays the user's name, pet name, location, info, and picture
+ * It also provides links to update user information or delete user account
+ * 
+********************************************************************************/
 const Account = (props) => {
   const { userInfo } = useContext(AuthContext);
 

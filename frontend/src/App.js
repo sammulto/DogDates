@@ -18,8 +18,8 @@ import { useAuth } from "./shared/hooks/auth-hook";
 
 function App() {
   //////////////////// Change here for API SERVER URL ///////////////
-  const API_URL = "http://localhost:5000";//"http://www.sammul.live";
-  const API_URL_IMAGES = "http://localhost:5000";//"http://www.sammul.live";
+  const API_URL = "https://www.sammul.live";
+  const API_URL_IMAGES = "https://www.sammul.live";
   //////////////////////////////////////////////////////////////////
   const { token, login, logout, userId, userInfo } = useAuth();
   let routes;

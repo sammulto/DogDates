@@ -19,6 +19,7 @@
     align-items: center;
     position: relative;
     align-self: center;
+    text-align: center;
 }
 
 .user-info-title{

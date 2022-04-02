@@ -9,6 +9,14 @@ import Select from '../../shared/components/FormElements/Select';
 import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 import { AuthContext } from "../../shared/context/auth-context";
 
+/****************************************************************************************** 
+ * 
+ * Signup.js
+ * 
+ * This page allows the user to create an account which includes:
+ * email, password, name, dog name, location, description, picture
+ * 
+******************************************************************************************/
 const Signup = (props) => {
 
   const auth = useContext(AuthContext);
@@ -45,7 +53,7 @@ const Signup = (props) => {
       if (response) {
         auth.login(response.data.uid, response.data.token, response.data);
         //redirect to account page
-        window.location = "/account";
+        window.location = "/";
       }
 
     }).catch((error) =>{

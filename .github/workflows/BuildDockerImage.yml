@@ -1,13 +1,8 @@
 name: Build And Push Docker Images
 
 on:
-#   pull_request:
-#     types: [closed]
-#     branches:
-#       - master
-  push:
-    branches:
-      - 'fullStack'
+   pull_request:
+     types: [closed]
 
 jobs:
   Build-And-Push-Docker-Images:

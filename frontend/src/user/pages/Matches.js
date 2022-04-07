@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { AuthContext } from "../../shared/context/auth-context";
+import { AuthContext } from "../../shared/context/Auth-context";
 
 import MatchList from "../../match/MatchList";
 

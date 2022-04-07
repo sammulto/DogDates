@@ -13,8 +13,8 @@ import DeleteAccountWarning from './user/pages/DeleteAccountWarning';
 import AccountDeleted from './user/pages/AccountDelected';
 import PlayDates from './user/pages/PlayDates';
 import Matches from './user/pages/Matches'
-import { AuthContext } from "./shared/context/auth-context";
-import { useAuth } from "./shared/hooks/auth-hook";
+import { AuthContext } from "./shared/context/Auth-context";
+import { useAuth } from "./shared/hooks/Auth-hook";
 
 function App() {
   //////////////////// Change here for API SERVER URL ///////////////

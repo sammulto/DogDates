@@ -7,7 +7,7 @@ import './Signup.css'
 import TextInput from '../../shared/components/FormElements/TextInput';
 import Select from '../../shared/components/FormElements/Select';
 import ImageUpload from '../../shared/components/FormElements/ImageUpload';
-import { AuthContext } from "../../shared/context/auth-context";
+import { AuthContext } from "../../shared/context/Auth-context";
 
 /****************************************************************************************** 
  * 

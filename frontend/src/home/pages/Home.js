@@ -8,7 +8,7 @@ import EditProfileButton from "../components/EditProfileButton";
 
 import MyMatchesButton from "../components/MyMatchesButton";
 
-import { AuthContext } from "../../shared/context/auth-context";
+import { AuthContext } from "../../shared/context/Auth-context";
 
 import "./Home.css";
 

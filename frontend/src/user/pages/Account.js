@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { AuthContext } from "../../shared/context/Auth-context";
+import { AuthContext } from "../../shared/context/auth-context";
 import "./Account.css";
 
 /******************************************************************************* 

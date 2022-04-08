@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
-import { AuthContext } from "../../shared/context/Auth-context";
+import { AuthContext } from "../../shared/context/auth-context";
 import "./Login.css";
 import TextInput from "../../shared/components/FormElements/TextInput";
 

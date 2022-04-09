@@ -6,6 +6,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
 
+//this schema stores user's info
 const userSchema = new Schema({
     uid:{ type: String, required: true },
     email: { type: String, required: true , unique: true},
@@ -18,24 +19,23 @@ const userSchema = new Schema({
     token: { type: String }
 });
 
-const likedListSchema = new Schema({
+//this schema stores info related to like/dislike/match info
+const viewListSchema = new Schema({
     uid: { type: String, required: true },
-    liked: [String] //array of uid
-});
-
-const matchedListSchema = new Schema({
-    uid: { type: String, required: true },
-    liked: [String] //array of uid
+    hasNewMatch: {type: Boolean},
+    //arrays of uid
+    matched: [String],
+    liked: [String], 
+    disliked: [String],
+    unseen: [String]
 });
 
 userSchema.plugin(uniqueValidator);
 
 const UserModel = mongoose.model('User', userSchema);
-const LikedListModel = mongoose.model('LikedList', likedListSchema);
-const MatchedListModel = mongoose.model('MatchedList', matchedListSchema);
+const viewListModel = mongoose.model('viewList', viewListSchema);
 
 module.exports = { 
     UserModel: UserModel,
-    LikedListModel: LikedListModel,
-    MatchedListModel: MatchedListModel
+    viewListModel: viewListModel
 };

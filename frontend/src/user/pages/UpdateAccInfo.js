@@ -9,6 +9,14 @@ import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./UpdateAccInfo.css";
 
+/****************************************************************************************** 
+ * 
+ * UdateAccountInfo.js
+ * 
+ * This page displays allows the user to change their account information including:
+ * email, password, name, dog name, location, picture, description
+ * 
+******************************************************************************************/
 const UpdateAccountInfo = (props) => {
   const { userInfo } = useContext(AuthContext);
   const auth = useContext(AuthContext);
@@ -130,10 +138,10 @@ const UpdateAccountInfo = (props) => {
                 errorText=" "
               />
               {touched.image && errors.image ? (
-                <div className="errorMessage">{errors.image}</div>
+                <div className="errorMessage-image">{errors.image}</div>
               ) : null}
               <div
-                className="errorMessage" data-testid="errorMsg"
+                className="errorMessage-server" data-testid="errorMsg"
                 style={showError ? { display: "block" } : { display: "none" }}
               >
                 {" "}

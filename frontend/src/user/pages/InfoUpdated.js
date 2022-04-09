@@ -2,6 +2,13 @@ import React from "react";
 
 import "./InfoUpdated.css";
 
+/******************************************************************************* 
+ * 
+ * InfoUpdated.js
+ * 
+ * This page informs the user that their profile has been updated 
+ * 
+********************************************************************************/
 const InfoUpdated = () => {
 
 return (

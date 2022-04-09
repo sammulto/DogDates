@@ -9,7 +9,7 @@ const DBfailedHttpError = new HttpError(
   500
 );
 
-const addUidToLikeList = async (req, res, next) => {
+const addUidToDislikeList = async (req, res, next) => {
 
   //reqeust input validation
   const errors = validationResult(req);
@@ -28,50 +28,30 @@ const addUidToLikeList = async (req, res, next) => {
   }
 
   const { uid:targetUid } = req.body;
-  let matchedResult = false;
 
   //check if the target user and the current user are the same user
   if (targetUid === userUid) {
     return next(
-        new HttpError("You can't like yourself.", 422)
+        new HttpError("You can't dislike yourself.", 422)
     );
   }
 
   try{
-    //get the liked user's View list
-    let targetUserViewList = await viewListModel.findOne({ uid:targetUid }).exec();
-    
-    //fetch the current user's liked list
+
+    //fetch the current user's disliked list
     let userViewList = await viewListModel.findOne({ uid:userUid }).exec();
 
-    //validate if both users exist
-    if (!targetUserViewList || !userViewList) {
+    //get the disliked user's View list
+    let targetUserViewList = await viewListModel.findOne({ uid:targetUid }).exec();
+
+    //validate if the users exist
+    if (!userViewList || !targetUserViewList) {
       return next(new HttpError("User ID not found!", 404));
     }
 
-    //check if they're match
-    matchedResult = targetUserViewList.liked.includes(userUid);
-    
-    if(matchedResult){
-
-      //add users to each other's match list
-      targetUserViewList.matched.push(userUid);
-      targetUserViewList.hasNewMatch = true;
-      userViewList.matched.push(targetUid);
-      userViewList.hasNewMatch = true;
-      //remove current user from target user's liked list
-      targetUserViewList.liked = targetUserViewList.liked.filter(
-          item => item !== userUid);
-      //update DB's records
-      await targetUserViewList.save();
-      await userViewList.save();
-
-    }else{
-
-      //if not match, update current user's liked list
-      userViewList.liked.push(targetUid);
-      await userViewList.save();
-    }
+    //update current user's disliked list
+    userViewList.disliked.push(targetUid);
+    await userViewList.save();
 
   }catch(err){
     // return 500 error if DB operation fails
@@ -80,8 +60,8 @@ const addUidToLikeList = async (req, res, next) => {
   }
 
   //send response
-  res.status(200).json({ matched: matchedResult });
+  res.status(200).json({ message: "Dislike list updated!" });
 
 };
 
-exports.addUidToLikeList = addUidToLikeList;
+exports.addUidToDislikeList = addUidToDislikeList;

@@ -6,7 +6,7 @@ const { validationResult } = require("express-validator");
 const uuid = require("uuid");
 
 const HttpError = require("../models/http-error");
-const { UserModel } = require("../persistence/db-schema");
+const { UserModel, viewListModel } = require("../persistence/db-schema");
 
 const DBfailedHttpError = new HttpError(
   "Database operation failed, please try again",
@@ -82,16 +82,24 @@ const createUser = async (req, res, next) => {
     token: newToken,
   });
 
-  //add user to DB
+  //create a view list for the user
+  const newViewList = new viewListModel({
+    uid: newUid,
+    liked: [],
+    disliked: [],
+    unseen: []
+  });
+
+  //add user and view list to DB
   try {
     await newUser.save();
+    await newViewList.save();
   } catch (error) {
     console.log(error);
     return next(DBfailedHttpError);
   }
 
   console.log("New User: " + newUser.email + " is created.");
-
 
   //send response
   const response = newUser.toObject();

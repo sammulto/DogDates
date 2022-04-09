@@ -10,12 +10,6 @@ const DBfailedHttpError = new HttpError(
   500
 );
 
-const getUserList = async (req, res, next) => {
-  //hide the sensitive properties from query results 
-  const users = await UserModel.find().select('-password -token -email -_id -__v').exec();
-  res.status(201).json(users);
-};
-
 const getUserById = async (req, res, next) => {
   const uid = req.params.uid;
 
@@ -33,10 +27,12 @@ const getUserById = async (req, res, next) => {
     return next(new HttpError("User does not exist!", 404));
   }
 
-  res.status(201).json(user);
+  res.status(200).json(user);
 };
 
 const updateUserById = async (req, res, next) => {
+
+  //reqeust input validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(
@@ -44,9 +40,8 @@ const updateUserById = async (req, res, next) => {
     );
   }
 
-  const uid = req.params.uid;
   const inputUid = req.params.uid;
-  const tokenUid = req.userData.uid;
+  const tokenUid = req.userData.uid; //userData is provided by authenticator middleware
 
   //verify if the token holder's uid matchs the req's uid
   if(inputUid !== tokenUid){
@@ -62,7 +57,7 @@ const updateUserById = async (req, res, next) => {
     picturePath = req.file.path;
   }
 
-  //update user info
+  //get current user info from DB
   const result = await UserModel.find({ uid: inputUid }).exec();
   if (result.length !== 0) user = result[0];
 
@@ -74,6 +69,25 @@ const updateUserById = async (req, res, next) => {
     //user exists, replace the fields in the database
   }else {
 
+    //check if new email already exists
+    if(user.email != email){
+      let userExists = true;
+      try {
+        userExists = await getUserByEmail(email);
+      } catch (error) {
+        return next(error);
+      }
+
+      if (userExists) {
+        return next(
+          new HttpError(
+            "User name already exists, please choose a new user name.",
+            400
+          )
+        );
+      }
+    }
+    
     //if req contains a password, handle password update
     let hashedPassword = user.password;
     if(req.body.password){
@@ -81,15 +95,15 @@ const updateUserById = async (req, res, next) => {
         hashedPassword = await bcrypt.hash(req.body.password, 10);
       } catch (error) {
         return next(new HttpError("Something went wrong, please try again.", 500));
+      }
+      //if req contains an image, handle image update
+      let picturePath = user.picturePath;
+      if(req.file.path){
+        picturePath = req.file.path;
+      }
     }
 
-    //if req contains an image, handle image update
-    let picturePath = user.picturePath;
-    if(req.file.path){
-      picturePath = req.file.path;
-    }
-
-  }
+    //update user info
     UserModel.findByIdAndUpdate(
       user._id,
       { 
@@ -147,7 +161,21 @@ const deleteUserById = async (req, res, next) => {
   res.status(201).json({ msg: "user deleted.", user });
 };
 
+const getUserByEmail = async (email) => {
+  let user = false;
+
+  try {
+    let result = await UserModel.find({ email: email }).exec();
+    if (result.length !== 0) {
+      user = result[0];
+    }
+  } catch (error) {
+    throw DBfailedHttpError;
+  }
+
+  return user;
+};
+
 exports.getUserById = getUserById;
 exports.updateUserById = updateUserById;
 exports.deleteUserById = deleteUserById;
-exports.getUserList = getUserList;

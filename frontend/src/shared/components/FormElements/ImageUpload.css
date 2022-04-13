@@ -1,4 +1,4 @@
-.image-upload{
+.image-upload {
   position: relative;
   top: 1em;
 }
@@ -28,7 +28,7 @@
   object-fit: cover;
 }
 
-.image-label{
+.image-label {
   position: relative;
   top: 0.5em;
   left: 1em;
@@ -39,12 +39,12 @@
   z-index: 1;
 }
 
-.upload-btn{
+.upload-btn {
   display: block;
   margin-left: auto;
   padding: 1em 3em;
   border: none;
-  background-color: #083D77;
+  background-color: #083d77;
   color: white;
   border-radius: 0.5em;
   cursor: pointer;

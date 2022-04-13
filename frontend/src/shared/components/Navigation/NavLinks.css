@@ -16,7 +16,7 @@
 
 .nav-links a {
   border: 1px solid transparent;
-  color: #EBEBD3;
+  color: #ebebd3;
   text-decoration: none;
   padding: 1rem;
 }
@@ -24,7 +24,7 @@
 .nav-links a:hover,
 .nav-links a:active,
 .nav-links a.active {
-  background: #F4D35E;
+  background: #f4d35e;
   border-color: #292929;
   color: #292929;
 }
@@ -33,7 +33,7 @@
   cursor: pointer;
   border: 1px solid #292929;
   color: #292929;
-  background: #F4D35E;
+  background: #f4d35e;
   padding: 1rem;
   font: inherit;
 }
@@ -52,7 +52,7 @@
   }
 
   .nav-links a {
-    color: #EBEBD3;
+    color: #ebebd3;
     text-decoration: none;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import './RegisterButton.css'
+import "./RegisterButton.css";
 
 export default function RegisterButton() {
   return (

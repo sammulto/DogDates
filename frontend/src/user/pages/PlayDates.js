@@ -2,17 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../shared/context/auth-context";
 
-import './PlayDates.css'
+import "./PlayDates.css";
 
-/****************************************************************************************** 
- * 
+/******************************************************************************************
+ *
  * PlayDates.js
- * 
+ *
  * This page displays the profile information of accounts in a user's city
  * It displays one account at a time and allows the user to click 'like' or 'dislike'
  * It will only show accounts that the user has not seen before
- * 
-******************************************************************************************/
+ *
+ ******************************************************************************************/
 export default function PlayDates(props) {
   //current logged in user
   const { userInfo } = useContext(AuthContext);

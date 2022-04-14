@@ -9,15 +9,15 @@ import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./UpdateAccInfo.css";
 
-/****************************************************************************************** 
- * 
+/******************************************************************************************
+ *
  * UdateAccountInfo.js
- * 
+ *
  * This page displays allows the user to change their account information including:
  * email, password, name, dog name, location, picture, description
- * 
-******************************************************************************************/
-const UpdateAccountInfo = (props) => {
+ *
+ ******************************************************************************************/
+export default function UpdateAccountInfo(props) {
   const { userInfo } = useContext(AuthContext);
   const auth = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
@@ -107,10 +107,30 @@ const UpdateAccountInfo = (props) => {
             //profile update form
             <Form className="updateForm">
               <h1 className="updateTitle">Update Account Profile</h1>
-              <TextInput name="email" label="Email" type="text" data-testid="email"/>
-              <TextInput name="password" label="Password" type="password" data-testid="password"/>
-              <TextInput name="ownerName" label="My Name" type="text" data-testid="ownerName"/>
-              <TextInput name="dogName" label="My Puppy's Name" type="text" data-testid="dogName"/>
+              <TextInput
+                name="email"
+                label="Email"
+                type="text"
+                data-testid="email"
+              />
+              <TextInput
+                name="password"
+                label="Password"
+                type="password"
+                data-testid="password"
+              />
+              <TextInput
+                name="ownerName"
+                label="My Name"
+                type="text"
+                data-testid="ownerName"
+              />
+              <TextInput
+                name="dogName"
+                label="My Puppy's Name"
+                type="text"
+                data-testid="dogName"
+              />
               <Select name="city" label="City" data-testid="city">
                 <option id="1" value="" data-testid="select_city">
                   Select A City
@@ -141,7 +161,8 @@ const UpdateAccountInfo = (props) => {
                 <div className="errorMessage-image">{errors.image}</div>
               ) : null}
               <div
-                className="errorMessage-server" data-testid="errorMsg"
+                className="errorMessage-server"
+                data-testid="errorMsg"
                 style={showError ? { display: "block" } : { display: "none" }}
               >
                 {" "}
@@ -159,6 +180,4 @@ const UpdateAccountInfo = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-export default UpdateAccountInfo;
+}

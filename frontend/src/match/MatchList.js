@@ -2,7 +2,7 @@ import React from "react";
 
 import MatchItem from "./MatchItem";
 
-import './MatchList.css'
+import "./MatchList.css";
 
 export default function MatchList(props) {
   if (props.items.length === 0) {

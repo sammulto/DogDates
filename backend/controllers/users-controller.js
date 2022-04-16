@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const HttpError = require("../models/http-error");
 const { UserModel } = require("../persistence/db-schema");
@@ -15,7 +15,9 @@ const getUserById = async (req, res, next) => {
 
   let user = false;
   try {
-    let result = await UserModel.find({ uid: uid }).select('-password -token -email -_id -__v').exec();
+    let result = await UserModel.find({ uid: uid })
+      .select("-password -token -email -_id -__v")
+      .exec();
     if (result.length !== 0) {
       user = result[0];
     }
@@ -31,7 +33,6 @@ const getUserById = async (req, res, next) => {
 };
 
 const updateUserById = async (req, res, next) => {
-
   //reqeust input validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -44,7 +45,7 @@ const updateUserById = async (req, res, next) => {
   const tokenUid = req.userData.uid; //userData is provided by authenticator middleware
 
   //verify if the token holder's uid matchs the req's uid
-  if(inputUid !== tokenUid){
+  if (inputUid !== tokenUid) {
     return next(new HttpError("User doesn't match with the token!", 404));
   }
 
@@ -52,7 +53,7 @@ const updateUserById = async (req, res, next) => {
   const { ownerName, dogName, city, description, email } = req.body;
   let user = null;
   let picturePath = "default";
-  if(req.file){
+  if (req.file) {
     console.log(req.file);
     picturePath = req.file.path;
   }
@@ -62,15 +63,13 @@ const updateUserById = async (req, res, next) => {
   if (result.length !== 0) user = result[0];
 
   //return error if uid is not valid
-  if (!user){
-
+  if (!user) {
     return next(new HttpError("User does not exist!", 404));
-  
-    //user exists, replace the fields in the database
-  }else {
 
+    //user exists, replace the fields in the database
+  } else {
     //check if new email already exists
-    if(user.email != email){
+    if (user.email != email) {
       let userExists = true;
       try {
         userExists = await getUserByEmail(email);
@@ -87,18 +86,20 @@ const updateUserById = async (req, res, next) => {
         );
       }
     }
-    
+
     //if req contains a password, handle password update
     let hashedPassword = user.password;
-    if(req.body.password){
+    if (req.body.password) {
       try {
         hashedPassword = await bcrypt.hash(req.body.password, 10);
       } catch (error) {
-        return next(new HttpError("Something went wrong, please try again.", 500));
+        return next(
+          new HttpError("Something went wrong, please try again.", 500)
+        );
       }
       //if req contains an image, handle image update
       let picturePath = user.picturePath;
-      if(req.file.path){
+      if (req.file.path) {
         picturePath = req.file.path;
       }
     }
@@ -106,14 +107,14 @@ const updateUserById = async (req, res, next) => {
     //update user info
     UserModel.findByIdAndUpdate(
       user._id,
-      { 
-        email:email,
-        ownerName: ownerName, 
-        city: city, 
-        dogName: dogName, 
-        description:description, 
+      {
+        email: email,
+        ownerName: ownerName,
+        city: city,
+        dogName: dogName,
+        description: description,
         pictures: picturePath,
-        password: hashedPassword
+        password: hashedPassword,
       },
       function (error) {
         if (error) return next(DBfailedHttpError);
@@ -138,7 +139,7 @@ const deleteUserById = async (req, res, next) => {
   const tokenUid = req.userData.uid;
 
   //verify if the token holder's uid matchs the req's uid
-  if(inputUid !== tokenUid){
+  if (inputUid !== tokenUid) {
     return next(new HttpError("User doesn't match with the token!", 404));
   }
 

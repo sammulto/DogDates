@@ -1,5 +1,5 @@
 import React from "react";
-import './MyMatchesButton.css'
+import "./MyMatchesButton.css";
 
 export default function MyMatchesButton() {
   return (

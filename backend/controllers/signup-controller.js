@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const bcrypt = require("bcryptjs");
 const webtoken = require("jsonwebtoken");
@@ -66,7 +66,7 @@ const createUser = async (req, res, next) => {
 
   //create a user
   let picturePath = "default";
-  if(req.file){
+  if (req.file) {
     console.log(req.file);
     picturePath = req.file.path;
   }
@@ -87,7 +87,7 @@ const createUser = async (req, res, next) => {
     uid: newUid,
     liked: [],
     disliked: [],
-    unseen: []
+    unseen: [],
   });
 
   //add user and view list to DB

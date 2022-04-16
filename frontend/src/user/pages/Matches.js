@@ -4,16 +4,16 @@ import { AuthContext } from "../../shared/context/auth-context";
 
 import MatchList from "../../match/MatchList";
 
-/****************************************************************************************** 
- * 
+/******************************************************************************************
+ *
  * Matches.js
- * 
+ *
  * This page displays the profile information of accounts that the user has matched with
  * It can display multiple accounts
  * For each account it displays name, dog name, location, email, discription, picture
  * It does this by calling the MatchList.js component
- * 
-******************************************************************************************/
+ *
+ ******************************************************************************************/
 export default function Matches(props) {
   //current logged in user
   const { userInfo } = useContext(AuthContext);

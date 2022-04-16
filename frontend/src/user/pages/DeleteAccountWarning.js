@@ -4,15 +4,15 @@ import axios from "axios";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./DeleteAccountWarning.css";
 
-/******************************************************************************* 
- * 
+/*******************************************************************************
+ *
  * DeleteAccountWarning.js
- * 
+ *
  * This page displays a warning asking if the user wants to delete their account
  * If user clicks delete then the account is deleted from the DB
- * 
-********************************************************************************/
-const DeletedAccountWarning = (props) => {
+ *
+ ********************************************************************************/
+export default function DeletedAccountWarning(props) {
   const { userInfo } = useContext(AuthContext);
   const auth = useContext(AuthContext);
   const [showError, setShowError] = useState(false);
@@ -60,7 +60,8 @@ const DeletedAccountWarning = (props) => {
             </h2>
           </div>
           <div
-            className="warning-errorMessage" data-testid="errorMessage"
+            className="warning-errorMessage"
+            data-testid="errorMessage"
             style={showError ? { display: "block" } : { display: "none" }}
           >
             {errorMessage}
@@ -85,6 +86,4 @@ const DeletedAccountWarning = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-export default DeletedAccountWarning;
+}

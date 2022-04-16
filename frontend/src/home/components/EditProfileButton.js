@@ -1,5 +1,5 @@
 import React from "react";
-import './EditProfileButton.css'
+import "./EditProfileButton.css";
 
 export default function EditProfileButton() {
   return (

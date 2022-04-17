@@ -28,7 +28,7 @@ This project will be similar to a dating app but will be for making playdates fo
 * Match with a user (unlock the ability to view extra user information)
 * View users you've matched with
 
-##  Non-functional feature
+##  Non-Functional Feature
 * API can handle 1000 requests per minute (in a single node backend setup)
 
 ## Languages and Tools

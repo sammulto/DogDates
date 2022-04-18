@@ -49,7 +49,9 @@ export default function ImageUpload(props) {
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
       />
-      <label className="image-label" htmlFor= "image-input">{props.label}</label>
+      <label className="image-label" htmlFor="image-input">
+        {props.label}
+      </label>
       <div className={`image-upload ${props.center && "center"}`}>
         <div className="image-upload__preview">
           {previewUrl && <img src={previewUrl} alt="Preview" />}

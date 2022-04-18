@@ -3,15 +3,15 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./Account.css";
 
-/******************************************************************************* 
- * 
+/*******************************************************************************
+ *
  * Account.js
- * 
+ *
  * This page displays the user's name, pet name, location, info, and picture
  * It also provides links to update user information or delete user account
- * 
-********************************************************************************/
-const Account = (props) => {
+ *
+ ********************************************************************************/
+export default function Account(props) {
   const { userInfo } = useContext(AuthContext);
 
   const updateInfoHandler = () => {
@@ -33,7 +33,11 @@ const Account = (props) => {
             <h2 className="user-info-title">
               Welcome Back, {userInfo.ownerName}
             </h2>
-            <img className="user-info-image" src={imagePath} alt="User Profile" />
+            <img
+              className="user-info-image"
+              src={imagePath}
+              alt="User Profile"
+            />
             <div className="user-info-line">
               <span className="material-icons user-info-icon name">person</span>
               <div className="user-info-value">{userInfo.ownerName}</div>
@@ -73,6 +77,4 @@ const Account = (props) => {
   } else {
     return <div>Your session is expired, please log out and log in again.</div>;
   }
-};
-
-export default Account;
+}

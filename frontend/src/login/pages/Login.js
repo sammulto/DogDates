@@ -7,13 +7,13 @@ import { AuthContext } from "../../shared/context/auth-context";
 import "./Login.css";
 import TextInput from "../../shared/components/FormElements/TextInput";
 
-/****************************************************************************************** 
- * 
+/******************************************************************************************
+ *
  * Login.js
- * 
+ *
  * This page allows the user to log in using their email and password
- * 
-******************************************************************************************/
+ *
+ ******************************************************************************************/
 export default function Login(props) {
   const auth = useContext(AuthContext);
   //hooks
@@ -66,16 +66,32 @@ export default function Login(props) {
             //login form
             <Form className="login-form">
               <h1 className="login-title">Log in</h1>
-              <TextInput name="email" label="Email" type="text" data-testid="email"/>
-              <TextInput name="password" label="Password" type="password" data-testid="password" />
+              <TextInput
+                name="email"
+                label="Email"
+                type="text"
+                data-testid="email"
+              />
+              <TextInput
+                name="password"
+                label="Password"
+                type="password"
+                data-testid="password"
+              />
               <div
-                className="login-errorMessage" data-testid="errorMsg"
+                className="login-errorMessage"
+                data-testid="errorMsg"
                 style={showError ? { display: "block" } : { display: "none" }}
               >
                 {" "}
                 {errorMessage}{" "}
               </div>
-              <input type="submit" className="loginBtn" value="Login" data-testid="button"/>
+              <input
+                type="submit"
+                className="loginBtn"
+                value="Login"
+                data-testid="button"
+              />
             </Form>
           )}
         </Formik>

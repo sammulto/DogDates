@@ -4,6 +4,7 @@ on:
   pull_request:
     types: [closed]
 
+
 jobs:
   Build-And-Push-Docker-Images:
     runs-on: ubuntu-latest

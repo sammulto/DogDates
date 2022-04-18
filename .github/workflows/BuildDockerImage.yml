@@ -1,8 +1,9 @@
 name: Build And Push Docker Images
 
 on:
-   pull_request:
-     types: [closed]
+  pull_request:
+    types: [closed]
+
 
 jobs:
   Build-And-Push-Docker-Images:

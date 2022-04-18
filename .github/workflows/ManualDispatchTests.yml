@@ -2,7 +2,7 @@ name: Manual Dispatch Tests
 
 on: 
   [workflow_dispatch]
-
+  
 env:
   DB_USER: ${{ secrets.DB_USER }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}

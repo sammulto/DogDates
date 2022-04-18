@@ -556,7 +556,6 @@
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="User1 has matched" enabled="true">
           <stringProp name="IfController.condition">&quot;${uid1Match}&quot;!=&quot;UidNotFound&quot;</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
-          <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="User1MatchUser" enabled="true">
@@ -628,7 +627,6 @@
         <IfController guiclass="IfControllerPanel" testclass="IfController" testname="User2 has matched" enabled="true">
           <stringProp name="IfController.condition">&quot;${uid2Match}&quot;!=&quot;UidNotFound&quot;</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
-          <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="User2MatchUser" enabled="true">

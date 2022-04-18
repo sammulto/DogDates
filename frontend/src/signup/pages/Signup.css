@@ -39,10 +39,9 @@
 }
 
 .signup-errorMessage {
-  position: flex;
   top: -10em;
   right: 0.2em;
-  padding: 0 0.4em;
+  padding: 1.5em 0.4em 0em 0.4em;
   background-color: white;
   color: #eb0404;
   font-weight: 500;

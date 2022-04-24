@@ -164,5 +164,4 @@ describe('Test get one user info', () => {
       expect(res.body === undefined);
     });
   })
-
 });

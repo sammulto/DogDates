@@ -3,7 +3,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-let app = require('../app');
+let app = require('../../app');
 let request = require('supertest');
 
 //genrate a random collection's name

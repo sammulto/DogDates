@@ -85,7 +85,7 @@ describe('Test update user profile', () => {
         }).expect(401);
     })
 
-    test('Without authorized token and uid', async () => {
+    test('Without authorized token', async () => {
         return request(app).patch('/api/users/' + uid1).send({
             email: "abcd@a.com",
             ownerName: "Franklin",

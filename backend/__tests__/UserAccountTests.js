@@ -62,134 +62,8 @@ afterAll ( async () => {
 });
 
 
-
-describe('Test get one user info', () => {
-    test('Without authorized token', async () => {
-        return request(app).get('/api/users' + uid1).send({
-        }).expect(401);
-    })
-
-    test('With wrong uid', async () => {
-        return request(app).get('/api/users/' + "123").set('Authorization', 'Bearer ' + token1).send({
-
-
-        }).expect(404);
-    })
-
-    test('With correct uid', async () => {
-        return request(app).get('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-        }).expect(200);
-    })
-});
-
-
-
-
 describe('Test update user profile', () => {
-    test('Without authorized token and uid', async () => {
-        return request(app).patch('/api/users').send({
-            email: "abcd@a.com",
-            ownerName: "Franklin",
-            dogName: "Sun",
-            city: "Winnipeg",
-            description: "Hello, I'm Franklin and my dog is Sun.",
-            pictures: ["9uf234hf40.jpg"],
-        }).expect(401);
-    })
-
-    test('Without authorized token and wrong uid', async () => {
-        return request(app).patch('/api/users' + "123").send({
-            email: "abcd@a.com",
-            ownerName: "Franklin",
-            dogName: "Sun",
-            city: "Winnipeg",
-            description: "Hello, I'm Franklin and my dog is Sun.",
-            pictures: ["9uf234hf40.jpg"],
-        }).expect(401);
-    })
-
-    test('Without authorized token and uid', async () => {
-        return request(app).patch('/api/users/' + uid1).send({
-            email: "abcd@a.com",
-            ownerName: "Franklin",
-            dogName: "Sun",
-            city: "Winnipeg",
-            description: "Hello, I'm Franklin and my dog is Sun.",
-            pictures: ["9uf234hf40.jpg"],
-        }).expect(401);
-    })
-
-    test('With wrong uid(not in database)', async () => {
-        return request(app).patch('/api/users/' + "123").set('Authorization', 'Bearer ' + token1).send({
-            email: "abcd@a.com",
-            ownerName: "Franklin",
-            dogName: "Sun",
-            city: "Winnipeg",
-            description: "Hello, I'm Franklin and my dog is Sun.",
-            pictures: ["9uf234hf40.jpg"],
-        }).expect(404);
-    })
-
-    test('With wrong uid(not match with the token)', async () => {
-        return request(app).patch('/api/users/' + uid2).set('Authorization', 'Bearer ' + token1).send({
-            email: "abcde@a.com",
-            ownerName: "Christina",
-            dogName: "Sad",
-            city: "Winnipeg",
-            description: "Hello, I'm Christina and my dog is Happy.",
-            pictures: ["9uf234hf40.jpg"],
-        }).expect(404)
-    })
-
-    test('With wrong uid(not match with the token)', async () => {
-        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token2).send({
-            email: "abcd@a.com",
-            ownerName: "Franklin",
-            dogName: "Sun",
-            city: "Winnipeg",
-            description: "Hello, I'm Franklin and my dog is Sun.",
-            pictures: ["9uf234hf40.jpg"],
-        }).expect(404)
-    })
-
-    test('Change user1 info: miss email,ownerName,dogName and city', async () => {
-        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-
-        }).expect(422)
-    })
-
-    test('Change user1 info: miss email', async () => {
-        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-            ownerName: "Franklin",
-            dogName: "Sun",
-            city: "Winnipeg",
-        }).expect(422)
-    })
-
-    test('Change user1 info: miss ownerName', async () => {
-        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-            email: "abcd@a.com",
-            dogName: "Sun",
-            city: "Winnipeg",
-        }).expect(422)
-    })
-
-    test('Change user1 info: miss dogName', async () => {
-        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-            email: "abcd@a.com",
-            ownerName: "Franklin",
-            city: "Winnipeg",
-        }).expect(422)
-    })
-
-    test('Change user1 info: miss city', async () => {
-        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-            email: "abcd@a.com",
-            ownerName: "Franklin",
-            dogName: "Sun",
-        }).expect(422)
-    })
-
+   
     test('Change user1 info: dogName', async () => {
         return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
             email: "abcd@a.com",
@@ -245,31 +119,7 @@ describe('Test update user profile', () => {
 
 
 describe('Test delete user', () => {
-    test('Without authorized token and uid', async () => {
-        return request(app).delete('/api/users/').set('Authorization', 'Bearer ').send({
-        }).expect(401);
-    })
-
-    test('Without authorized token and wrong uid', async () => {
-        return request(app).delete('/api/users/' + "123").set('Authorization', 'Bearer ').send({
-        }).expect(401);
-    })
-
-    test('With wrong uid(not in database)', async () => {
-        return request(app).delete('/api/users/' + "123").set('Authorization', 'Bearer ' + token1).send({
-        }).expect(404);
-    })
-
-    test('With wrong uid(not match with the token)', async () => {
-        return request(app).delete('/api/users/' + uid1).set('Authorization', 'Bearer ' + token2).send({
-        }).expect(404);
-    })
-
-    test('With wrong uid(not match with the token)', async () => {
-        return request(app).delete('/api/users/' + uid2).set('Authorization', 'Bearer ' + token1).send({
-        }).expect(404);
-    })
-
+   
     test('clean user1', async () => {
         return request(app).delete('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
         }).expect(201);
@@ -278,5 +128,51 @@ describe('Test delete user', () => {
     test('clean user2', async () => {
         return request(app).delete('/api/users/' + uid2).set('Authorization', 'Bearer ' + token2).send({
         }).expect(201);
+    })
+});
+
+
+describe('Test update user profile after delete', () => {
+   
+    test('Change user1 info: dogName', async () => {
+        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
+            email: "abcd@a.com",
+            ownerName: "Franklin",
+            dogName: "Sun",
+            city: "Winnipeg",
+        }).expect(404);
+    })
+
+    test('Change user1 info: description', async () => {
+        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
+            email: "abcd@a.com",
+            ownerName: "Franklin",
+            dogName: "Sun",
+            city: "Winnipeg",
+            description: "Hello, I'm Franklin and my dog is Sun.",
+            pictures: ["9uf234hf41.jpg"],
+        }).expect(404)
+    })
+
+    test('Change user1 info: pictures', async () => {
+        return request(app).patch('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
+            email: "abcd@a.com",
+            ownerName: "Franklin",
+            dogName: "Sun",
+            city: "Winnipeg",
+            description: "Hello, I'm Franklin and my dog is Sun.",
+            pictures: ["9uf234hf42.jpg"],
+        }).expect(404)
+    })
+
+    test('Change user2 info: dogName, city, description and pictures', async () => {
+        return request(app).patch('/api/users/' + uid2).set('Authorization', 'Bearer ' + token2).send({
+            email: "abcde@a.com",
+            ownerName: "Christina",
+            dogName: "Sad",
+            city: "Toronto",
+            description: "Hello, I'm Christina and my dog is Sad.",
+            pictures: ["9uf234hf44.jpg"],
+        }).expect(404)
     })
 });

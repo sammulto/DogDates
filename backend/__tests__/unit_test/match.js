@@ -3,7 +3,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-let app = require('../app');
+let app = require('../../app');
 let request = require('supertest');
 
 //genrate a random collection's name
@@ -67,6 +67,17 @@ beforeAll(async () => {
     token3 = res.body.token;
   });
 
+  await request(app).patch('/api/like/' + uid1).set('Authorization', 'Bearer ' + token1).send({
+    uid: uid2
+  }).then((res) => {
+    expect(res.body.matched).toEqual(false);
+  });
+
+  await request(app).patch('/api/like/' + uid2).set('Authorization', 'Bearer ' + token2).send({
+    uid: uid1
+  }).then((res) => {
+    expect(res.body.matched).toEqual(true);
+  });
 });
 
 
@@ -80,21 +91,6 @@ afterAll(async () => {
 
 describe('Test get a list of users(in uid) that are matched with the current user', () => {
 
-  test('user1 like user2', async () => {
-    return request(app).patch('/api/like/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-      uid: uid2
-    }).expect(200).then((res) => {
-      expect(res.body.matched).toEqual(false);
-    })
-  })
-
-  test('user2 like user1', async () => {
-    return request(app).patch('/api/like/' + uid2).set('Authorization', 'Bearer ' + token2).send({
-      uid: uid1
-    }).expect(200).then((res) => {
-      expect(res.body.matched).toEqual(true);
-    })
-  })
 
   test('Without authorized token', async () => {
     return request(app).get('/api/match/list/' + uid1).send({
@@ -107,28 +103,28 @@ describe('Test get a list of users(in uid) that are matched with the current use
   })
 
   test('With wrong uid', async () => {
-      return request(app).get('/api/match/list/' + uid2).set('Authorization', 'Bearer ' + token1).send({
-      }).expect(401);
+    return request(app).get('/api/match/list/' + uid2).set('Authorization', 'Bearer ' + token1).send({
+    }).expect(401);
   })
 
 
   test('With correct uid, user1 match with user2', async () => {
     return request(app).get('/api/match/list/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-    }).expect(200).then((res) =>{
+    }).expect(200).then((res) => {
       expect(res.body[0]).toEqual(uid2);
     })
   })
 
   test('With correct uid, user2 match with user1', async () => {
     return request(app).get('/api/match/list/' + uid2).set('Authorization', 'Bearer ' + token2).send({
-    }).expect(200).then((res) =>{
+    }).expect(200).then((res) => {
       expect(res.body[0]).toEqual(uid1);
     })
   })
 
   test('With correct uid, no one match with user3', async () => {
     return request(app).get('/api/match/list/' + uid3).set('Authorization', 'Bearer ' + token3).send({
-    }).expect(200).then((res) =>{
+    }).expect(200).then((res) => {
       expect(res.body).toEqual([]);
     })
   })

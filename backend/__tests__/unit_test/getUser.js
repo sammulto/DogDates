@@ -3,7 +3,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-let app = require('../app');
+let app = require('../../app');
 let request = require('supertest');
 
 //genrate a random collection's name
@@ -63,46 +63,21 @@ afterAll ( async () => {
 
 
 
-describe('Add the liked user uid into the current user liked list', () => {
-
-    
+describe('Test get one user info', () => {
     test('Without authorized token', async () => {
-        return request(app).patch('/api/like/' + uid1).send({
+        return request(app).get('/api/users' + uid1).send({
         }).expect(401);
     })
 
     test('With wrong uid', async () => {
-        return request(app).patch('/api/like/' + "123").set('Authorization', 'Bearer ' + token1).send({
-        }).expect(401);
-    })
+        return request(app).get('/api/users/' + "123").set('Authorization', 'Bearer ' + token1).send({
 
-    test('With wrong parameter uid', async () => {
-        return request(app).patch('/api/like/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-            uid: "as"
+
         }).expect(404);
     })
 
-    test('user1 like user1', async () => {
-        return request(app).patch('/api/like/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-            uid: uid1
-        }).expect(422);
-    })
-
-    test('user2 like user2', async () => {
-        return request(app).patch('/api/like/' + uid2).set('Authorization', 'Bearer ' + token2).send({
-            uid: uid2
-        }).expect(422);
-    })
-
-    test('user1 like user2', async () => {
-        return request(app).patch('/api/like/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-            uid: uid2
-        }).expect(200);
-    })
-
-    test('user2 like user1', async () => {
-        return request(app).patch('/api/like/' + uid2).set('Authorization', 'Bearer ' + token2).send({
-            uid: uid1
+    test('With correct uid', async () => {
+        return request(app).get('/api/users/' + uid1).set('Authorization', 'Bearer ' + token1).send({
         }).expect(200);
     })
 });

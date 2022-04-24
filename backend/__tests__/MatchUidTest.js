@@ -123,13 +123,6 @@ describe('Test Get the uid user info with email', () => {
         }).expect(404);
     })
 
-    // test('With non-matched uid', async () => {
-    //     return request(app).get('/api/match/' + uid3).set('Authorization', 'Bearer ' + token1).send({
-    //     }).expect(200).then((res) => {
-    //         expect(res.body.email).toEqual("abcdef@a.com");
-    //     })
-    // })
-
     test('With correct uid, get the email of the lastest user user1 match', async () => {
         return request(app).get('/api/match/' + uid1Match).set('Authorization', 'Bearer ' + token1).send({
         }).expect(200).then((res) => {

@@ -3,14 +3,14 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-let app = require('../app');
+let app = require('../../app');
 let request = require('supertest');
 
 //genrate a random collection's name
-const DB_NAME = 'testDB' + Math.floor(Math.random() * 1000000);
-const DB_URL = 'mongodb+srv://' +
-  process.env.DB_USER + ':' +
-  process.env.DB_PASSWORD + '@cluster0.hxpf1.mongodb.net/' +
+const DB_NAME = 'testDB' + Math.floor(Math.random()*1000000); 
+const DB_URL = 'mongodb+srv://' + 
+  process.env.DB_USER + ':' + 
+  process.env.DB_PASSWORD + '@cluster0.hxpf1.mongodb.net/' + 
   DB_NAME + '?retryWrites=true&w=majority';
 
 let uid1 = "";
@@ -21,8 +21,8 @@ let uid3 = "";
 let token3 = "";
 
 //setup DB before tests
-beforeAll(async () => {
-  await mongoose.connect(DB_URL).catch(error => {
+beforeAll ( async ()=> {
+  await mongoose.connect(DB_URL).catch( error => {
     console.log('Failed to connect to MongoDB');
     console.log(error);
   });
@@ -66,12 +66,11 @@ beforeAll(async () => {
     uid3 = res.body.uid;
     token3 = res.body.token;
   });
-
 });
 
 
 //drop collection and close DB connection after tests
-afterAll(async () => {
+afterAll ( async () => {
   await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
 });
@@ -86,8 +85,6 @@ describe('Test get one user info', () => {
 
   test('With wrong uid', async () => {
     return request(app).get('/api/view/' + uid2).set('Authorization', 'Bearer ' + token1).send({
-
-
     }).expect(401);
   })
 
@@ -112,57 +109,4 @@ describe('Test get one user info', () => {
       expect(res.body.description).toEqual("Hello, I'm Christina and my dog is Happy.");
     })
   })
-
-  test('With correct uid, get next user(user3)', async () => {
-    return request(app).get('/api/view/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-    }).expect(200).then((res) => {
-      expect(res.body.uid).toEqual(uid3);
-      expect(res.body.ownerName).toEqual("Robert");
-      expect(res.body.dogName).toEqual("Cold");
-      expect(res.body.city).toEqual("Winnipeg");
-      expect(res.body.description).toEqual("Hello, I'm Robert and my dog is Cold.");
-    })
-  })
-
-  test('With correct uid, get next user(user2)', async () => {
-    return request(app).get('/api/view/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-    }).expect(200).then((res) => {
-      expect(res.body.uid).toEqual(uid2);
-      expect(res.body.ownerName).toEqual("Christina");
-      expect(res.body.dogName).toEqual("Happy");
-      expect(res.body.city).toEqual("Winnipeg");
-      expect(res.body.description).toEqual("Hello, I'm Christina and my dog is Happy.");
-    })
-  })
-
-  test('user1 like user2', async () => {
-    return request(app).patch('/api/like/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-      uid: uid2
-    }).expect(200);
-  })
-
-  test('user2 removed, get next user(user3)', async () => {
-    return request(app).get('/api/view/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-    }).expect(200).then((res) => {
-      expect(res.body.uid).toEqual(uid3);
-      expect(res.body.ownerName).toEqual("Robert");
-      expect(res.body.dogName).toEqual("Cold");
-      expect(res.body.city).toEqual("Winnipeg");
-      expect(res.body.description).toEqual("Hello, I'm Robert and my dog is Cold.");
-    })
-  })
-
-  test('user1 like user3', async () => {
-    return request(app).patch('/api/like/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-      uid: uid3
-    }).expect(200);
-  })
-
-  test('only user1 left in DB, so there is no other user', async () => {
-    return request(app).get('/api/view/' + uid1).set('Authorization', 'Bearer ' + token1).send({
-    }).expect(200).then((res) => {
-      expect(res.body === undefined);
-    });
-  })
-
 });

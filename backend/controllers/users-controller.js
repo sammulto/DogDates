@@ -1,7 +1,7 @@
 "use strict";
 
 const HttpError = require("../models/http-error");
-const { UserModel } = require("../persistence/db-schema");
+const { UserModel, viewListModel } = require("../persistence/db-schema");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 
@@ -155,6 +155,10 @@ const deleteUserById = async (req, res, next) => {
 
   //remove user from fakeDB
   UserModel.findOneAndDelete({ _id: user._id }, function (error) {
+    if (error) return next(DBfailedHttpError);
+  });
+
+  viewListModel.findOneAndDelete({ uid: user.uid }, function (error) {
     if (error) return next(DBfailedHttpError);
   });
 

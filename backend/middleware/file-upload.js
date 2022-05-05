@@ -15,7 +15,7 @@ const fileUpload = multer({
   storage: multer.diskStorage({
     destination: (req, file, callback) => {
       if (!fs.existsSync("upload/pictures")) {
-        fs.mkdirSync("upload/pictures");
+        fs.mkdir("./upload/pictures", {recursive: true}, err => {})
       }
       callback(null, "upload/pictures");
     },
